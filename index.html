@@ -98,7 +98,18 @@ function renderChips(){
 }
 function render(){
   if(current==="🔥ランキング"){
-    const rows=[...voteCounts.entries()]
+    // 旧仕様の "ギフト名::返し" 票も、現在の "ギフト名" 票も
+    // すべてギフト名単位にまとめて集計する
+    const giftTotals=new Map();
+
+    voteCounts.forEach((n,id)=>{
+      const giftName=String(id).split("::")[0].trim();
+      if(!giftName) return;
+      giftTotals.set(giftName,(giftTotals.get(giftName)||0)+n);
+    });
+
+    const rows=[...giftTotals.entries()]
+      .filter(([name])=>DATA.some(x=>x.title===name))
       .sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
 
     count.textContent=`${rows.length}件`;
@@ -114,12 +125,14 @@ function render(){
     }
 
     const medals=["🥇","🥈","🥉"];
+
     grid.innerHTML=`
-      <div class="rank-help">人気のギフト芸だけをサクッと確認できます。タイトルをタップするとそのギフトを検索します。</div>
+      <div class="rank-help">人気のギフト芸をサクッと確認できます。タイトルをタップすると、そのギフト芸だけ表示します。</div>
       <div class="rank-compact-list">
         ${rows.map(([name,n],i)=>{
           const x=DATA.find(v=>v.title===name);
-          const rank=i<3?medals[i]:`${i+1}`;
+          const rank=i<3?medals[i]:`${i+1}位`;
+
           return `<button class="rank-compact-row" data-rank-gift="${encodeURIComponent(name)}">
             <div class="rank-medal">${rank}</div>
             <div class="rank-main">
@@ -141,6 +154,7 @@ function render(){
         setTimeout(()=>search.scrollIntoView({behavior:"smooth",block:"start"}),50);
       };
     });
+
     return;
   }
   const q=search.value.trim().toLowerCase();
@@ -259,11 +273,16 @@ function decodeVoteId(id){
 function updateLikeButtons(){
   document.querySelectorAll("[data-like]").forEach(b=>{
     const id=decodeURIComponent(b.dataset.like);
-    const count=voteCounts.get(id)||0;
-    const on=myVotes.has(id);
+
+    let count=0;
+    voteCounts.forEach((n,key)=>{
+      if(key===id || String(key).startsWith(id+"::")) count+=n;
+    });
+
+    const on=[...myVotes].some(key=>key===id || String(key).startsWith(id+"::"));
+
     b.classList.toggle("on",on);
     b.textContent=`${on?"♥":"♡"} ${count}`;
-    // Never hard-disable: tapping can retry connection.
     b.disabled=false;
     b.style.opacity=rankingReady?"1":"0.72";
   });
