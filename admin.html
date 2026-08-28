@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ギフト芸 管理・カンペ</title>
+<style>
+:root{--bg:#fff9fc;--card:#fff;--ink:#2d2730;--muted:#847784;--line:#efdee7;--soft:#fff0f6;--lav:#f4efff;--danger:#b42318;--shadow:0 10px 30px rgba(70,42,58,.07)}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:900px;margin:auto;padding:14px 14px 100px}h1{font-size:28px;margin:8px 0 4px}.sub{font-size:13px;color:var(--muted);line-height:1.6}
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;padding:10px 0;background:rgba(255,249,252,.95);backdrop-filter:blur(14px)}
+.tab{flex:1;border:1px solid var(--line);border-radius:14px;padding:11px;background:#fff;font-weight:800}.tab.active{background:var(--ink);color:#fff}
+.panel{display:none}.panel.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px;margin-top:12px;box-shadow:var(--shadow)}
+label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin:12px 0 6px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:16px;background:#fff;color:var(--ink)}
+textarea{min-height:92px;resize:vertical}.row{display:grid;grid-template-columns:1fr;gap:10px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+button{border:0;border-radius:12px;padding:10px 13px;font-weight:800}.primary{background:var(--ink);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.danger{background:#fff1f0;color:var(--danger);border:1px solid #ffd0cc}
+.search{position:sticky;top:62px;z-index:10;background:rgba(255,249,252,.95);padding:8px 0}.list{display:grid;gap:10px;margin-top:10px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.item.locked{opacity:.68}
+.title{font-weight:900;font-size:17px}.meta{font-size:11px;color:var(--muted);margin-top:3px}.badge{display:inline-block;background:var(--soft);padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;margin-left:6px}.lock{background:#f1f1f1}
+.kanpe-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}.kanpe-title{font-size:21px;font-weight:900}
+.block{margin-top:10px;padding:12px;border-radius:15px;white-space:pre-wrap;word-break:break-word;line-height:1.6}.shuri{background:var(--lav)}.people{background:var(--soft)}.note{background:#fff8db}.small{font-size:12px;color:var(--muted);font-weight:800;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(15px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;opacity:0;transition:.2s;z-index:99}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(min-width:720px){.row{grid-template-columns:1fr 1fr}.list{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔐 ギフト芸 管理・カンペ</h1>
+<div class="sub">固定コンテンツはロック済み。追加・編集・削除した内容はこの端末内に保存できます。</div>
+<div class="tabs"><button class="tab active" data-tab="kanpe">カンペ</button><button class="tab" data-tab="manage">管理</button></div>
+
+<section id="kanpe" class="panel active">
+<div class="search"><input id="kanpeSearch" type="search" placeholder="🔍 ギフト名で検索"></div>
+<div id="kanpeList"></div>
+</section>
+
+<section id="manage" class="panel">
+<div class="card">
+<div class="row">
+<div><label>ギフト名</label><input id="title" placeholder="例：クラッカー"></div>
+<div><label>カテゴリ</label><select id="category"><option>ギフト</option><option>掛け合い</option><option>定番</option><option>弾幕</option><option>口上</option><option>コール</option><option>曲</option><option>時間</option></select></div>
+</div>
+<label>🐰 しゅりのセリフ</label><textarea id="shuri" placeholder="必要な場合だけ"></textarea>
+<label>📣 みんなの返し</label><textarea id="response" placeholder="リスナーが返す内容"></textarea>
+<label>🕺 動き・やること（自分用）</label><textarea id="action" placeholder="公開ページには出さない、自分用カンペ"></textarea>
+<label>📝 メモ（自分用）</label><textarea id="note" placeholder="タイミング・注意点など"></textarea>
+<div class="actions"><button id="saveBtn" class="primary">追加する</button><button id="cancelBtn" class="secondary" style="display:none">編集をやめる</button></div>
+</div>
+
+<div class="search"><input id="manageSearch" type="search" placeholder="🔍 ギフト名で検索"></div>
+<div id="manageList" class="list"></div>
+
+<div class="card">
+<div class="title">GitHub更新用</div>
+<div class="meta">編集後に gifts.js を書き出し、GitHub上の gifts.js と入れ替えると公開サイトへ反映できます。</div>
+<div class="actions"><button id="exportBtn" class="primary">gifts.jsを書き出す</button><button id="resetBtn" class="danger">端末内の変更をリセット</button></div>
+</div>
+</section>
+</div>
+<div id="toast" class="toast">保存しました</div>
+
+<script>
+window.GIFT_DATA = [{"title": "お歌弾幕", "category": "弾幕", "shuri": "", "response": "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨", "locked": true, "note": "", "action": ""}, {"title": "がんばれ弾幕", "category": "弾幕", "shuri": "せーのがせーで", "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️", "locked": false, "note": "", "action": ""}, {"title": "枠終わり", "category": "定番", "shuri": "次も回復しましょ🎶あっぷっぷ❗️", "response": "あっぷっぷ", "locked": false, "note": "", "action": ""}, {"title": "クラッカー", "category": "ギフト", "shuri": "しゅりの魅力にクラクラクラッカーってこと？そゆこと？助かっちゃったな🎉", "response": "そゆことー\nor\n-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-", "locked": false, "note": "", "action": ""}, {"title": "またくるよ", "category": "ギフト", "shuri": "またくるよくれたっことは、お約束❗️", "response": "やくそくー", "locked": false, "note": "", "action": ""}, {"title": "ちこぉよれ", "category": "掛け合い", "shuri": "〜〜〜〜ちこぉよれ〜❗️", "response": "おるよー", "locked": false, "note": "", "action": ""}, {"title": "ガチャチケ", "category": "ギフト", "shuri": "幸せなら拍手しよ🎶", "response": "👏👏", "locked": false, "note": "", "action": ""}, {"title": "くまさん・うさぎさん（大）（小）", "category": "ギフト", "shuri": "", "response": "チーム友達‼️", "locked": false, "note": "", "action": ""}, {"title": "愛している。", "category": "ギフト", "shuri": "", "response": "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨", "locked": false, "note": "", "action": ""}, {"title": "赤面チーク", "category": "ギフト", "shuri": "ぽっ", "response": "ぽっ", "locked": false, "note": "", "action": ""}, {"title": "自己紹介", "category": "定番", "shuri": "", "response": "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️", "locked": false, "note": "", "action": ""}, {"title": "ガチ恋口上", "category": "口上", "shuri": "", "response": "言いたいことがあるんだよ🫵🏻❤️‍🔥\nやっぱりしゅりりはかわいいよ😆💘\n好き好き大好きやっぱすき😘🫶🏼\nやっと見つけたお姫様👸✨️\n俺が生まれて来た理由👶🏻🍼︎\nそれはしゅりりに出会うため👨🚹👩🚺\n俺と一緒に人生歩もう🚶‍♀️💭\n世界で1番愛してる💕\n❤️あ❤️い❤️し❤️て❤️る❤️", "locked": true, "note": "", "action": ""}, {"title": "コール❗️(ポケモンmix)", "category": "コール", "shuri": "", "response": "パン🍞パン🍞パン🍞パン🍞ポケモンパン◓⃙⁣ 👾\nフレッシュ💎🍃ブレッド🥐伊藤パン🥖\n松たか子👩🏻松たか子👩🏻🎀\n山崎🏔春の🌸パン🍞祭り🏮👘✨", "locked": true, "note": "", "action": ""}, {"title": "やれんのか", "category": "掛け合い", "shuri": "やれんのかっていけんのかって", "response": "ﾎｲ!ﾎﾎｲ!", "locked": false, "note": "", "action": ""}, {"title": "💥🔫", "category": "掛け合い", "shuri": "ばーん！", "response": "うわあぁぁぁぁあああああああぁぁあ", "locked": false, "note": "", "action": ""}, {"title": "love so sweet", "category": "曲", "shuri": "", "response": "ジャジャジャジャーン!!", "locked": true, "note": "", "action": ""}, {"title": "一触即発禅ガール", "category": "曲", "shuri": "", "response": "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ", "locked": true, "note": "", "action": ""}, {"title": "SAN値", "category": "曲", "shuri": "", "response": "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!", "locked": true, "note": "", "action": ""}, {"title": "決め立ち", "category": "定番", "shuri": "", "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-", "locked": false, "note": "", "action": ""}, {"title": "えいちぴー↑↑", "category": "定番", "shuri": "", "response": "-` ̗ -` ̗ 💪🏻ﾅｲｴﾋﾟ🐰 ̖ ´- ̖ ´-\n-` ̗ -` ̗ 💪🏻ﾅ ｲ ｴ ﾋﾟ🐰 ̖ ´- ̖ ´-", "locked": false, "note": "", "action": ""}, {"title": "24時になった時", "category": "時間", "shuri": "", "response": "バトンタッチ❗️", "locked": false, "note": "", "action": ""}, {"title": "食べ物ギフト", "category": "ギフト", "shuri": "", "response": "いっぱい食べるきみがすき〜🎶", "locked": false, "note": "", "action": ""}, {"title": "ちがうとき", "category": "定番", "shuri": "", "response": "いっぱい食べるきみがすき〜🎶", "locked": false, "note": "", "action": ""}, {"title": "火炎放射", "category": "ギフト", "shuri": "", "response": "🔥 A CHI CHI A CHI 🔥", "locked": false, "note": "", "action": ""}, {"title": "あざらひ", "category": "ギフト", "shuri": "", "response": "あざらしのざらしあまざらし🦭", "locked": false, "note": "", "action": ""}, {"title": "いるか", "category": "ギフト", "shuri": "", "response": "いーるーか！いかいか！\nるるるるるるるる〜", "locked": false, "note": "", "action": ""}, {"title": "はいかわいい・今日も可愛い・いつも可愛い", "category": "定番", "shuri": "", "response": "きゅるん", "locked": false, "note": "", "action": ""}, {"title": "高嶺の花子さん", "category": "曲", "shuri": "好きなアイスの味はきっと〜", "response": "みんなの好きな味を教えてね！", "locked": false, "note": "", "action": ""}, {"title": "名称未設定", "category": "掛け合い", "shuri": "しぬ", "response": "そせい", "locked": false, "note": "", "action": ""}, {"title": "おみくじスロット(3個)が揃わなかった時", "category": "ギフト", "shuri": "", "response": "ｻﾞﾝﾈｰﾝ", "locked": false, "note": "", "action": ""}, {"title": "流れ金魚", "category": "ギフト", "shuri": "", "response": "ｷﾝｷﾞｮﾄﾞﾝ", "locked": false, "note": "", "action": ""}, {"title": "何が言いたいの？って時", "category": "定番", "shuri": "", "response": "覚悟？", "locked": false, "note": "", "action": ""}, {"title": "いぇいぇ", "category": "定番", "shuri": "", "response": "うぉうぉ", "locked": false, "note": "", "action": ""}, {"title": "えぐい", "category": "定番", "shuri": "", "response": "えっぐえっぐ🥚", "locked": false, "note": "", "action": ""}, {"title": "でか草", "category": "定番", "shuri": "", "response": "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/", "locked": false, "note": "", "action": ""}];
+</script>
+<script>
+const BASE=window.GIFT_DATA||[],KEY="syuriri_gift_admin_v1";
+let data=JSON.parse(localStorage.getItem(KEY)||"null")||JSON.parse(JSON.stringify(BASE)),editIndex=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1200)}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active")});
+function renderKanpe(){const q=$("kanpeSearch").value.trim().toLowerCase();const found=data.filter(x=>!q||x.title.toLowerCase().includes(q));$("kanpeList").innerHTML=found.map(x=>`<div class="kanpe-card"><div class="kanpe-title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>${x.action?`<div class="small">🕺 動き・やること</div><div class="block note">${esc(x.action)}</div>`:""}${x.shuri?`<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>`:""}${x.response?`<div class="small">📣 みんな</div><div class="block people">${esc(x.response)}</div>`:""}${x.note?`<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>`:""}</div>`).join("")||`<div class="card">見つかりませんでした。</div>`}
+function renderManage(){const q=$("manageSearch").value.trim().toLowerCase();const found=data.map((x,i)=>({...x,_i:i})).filter(x=>!q||x.title.toLowerCase().includes(q));$("manageList").innerHTML=found.map(x=>`<div class="item ${x.locked?'locked':''}"><div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div><div class="meta">${x.locked?'管理ページでは変更しません':'編集・削除できます'}</div>${x.locked?'':`<div class="actions"><button class="secondary editBtn" data-i="${x._i}">編集</button><button class="danger delBtn" data-i="${x._i}">削除</button></div>`}</div>`).join("");document.querySelectorAll(".editBtn").forEach(b=>b.onclick=()=>startEdit(+b.dataset.i));document.querySelectorAll(".delBtn").forEach(b=>b.onclick=()=>deleteItem(+b.dataset.i))}
+function clearForm(){["title","shuri","response","action","note"].forEach(id=>$(id).value="");$("category").value="ギフト";editIndex=null;$("saveBtn").textContent="追加する";$("cancelBtn").style.display="none"}
+function startEdit(i){const x=data[i];if(x.locked)return;editIndex=i;$("title").value=x.title||"";$("category").value=x.category||"ギフト";$("shuri").value=x.shuri||"";$("response").value=x.response||"";$("action").value=x.action||"";$("note").value=x.note||"";$("saveBtn").textContent="変更を保存";$("cancelBtn").style.display="";window.scrollTo({top:0,behavior:"smooth"})}
+function deleteItem(i){if(data[i].locked)return;if(confirm(`「${data[i].title}」を削除しますか？`)){data.splice(i,1);persist();renderManage();renderKanpe();toast("削除しました")}}
+$("saveBtn").onclick=()=>{const title=$("title").value.trim();if(!title){alert("ギフト名を入力してね");return}const obj={title,category:$("category").value,shuri:$("shuri").value.trim(),response:$("response").value.trim(),action:$("action").value.trim(),note:$("note").value.trim(),locked:false};if(editIndex===null)data.push(obj);else data[editIndex]=obj;persist();renderManage();renderKanpe();clearForm();toast("保存しました")};
+$("cancelBtn").onclick=clearForm;$("kanpeSearch").oninput=renderKanpe;$("manageSearch").oninput=renderManage;
+$("exportBtn").onclick=()=>{const text="window.GIFT_DATA = "+JSON.stringify(data,null,2)+";\n";const blob=new Blob([text],{type:"text/javascript;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gifts.js";document.body.appendChild(a);a.click();a.remove();toast("gifts.jsを書き出しました")};
+$("resetBtn").onclick=()=>{if(confirm("この端末で行った追加・編集・削除を全部リセットしますか？")){localStorage.removeItem(KEY);data=JSON.parse(JSON.stringify(BASE));clearForm();renderManage();renderKanpe();toast("リセットしました")}};
+renderKanpe();renderManage();
+</script>
+</body></html>
