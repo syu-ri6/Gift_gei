@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff7fb">
+<title>しゅりりりりりり。ギフト芸図鑑</title>
+
+<style>
+:root{
+  --bg:#fffafc;
+  --card:#ffffff;
+  --ink:#2e2730;
+  --muted:#7f7480;
+  --accent:#ff5c9c;
+  --accent-strong:#e94588;
+  --lav:#8b6cff;
+  --line:#f0e3ea;
+  --soft:#fff1f6;
+  --soft2:#f7f2ff;
+  --shadow:0 10px 30px rgba(70,42,58,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,92,156,.09), transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(139,108,255,.08), transparent 28%),
+    var(--bg);
+  color:var(--ink);
+}
+button,input{font:inherit}
+.wrap{
+  width:min(100%,860px);
+  margin:auto;
+  padding:14px 14px 96px;
+}
+.hero{
+  padding:16px 4px 12px;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+h1{
+  font-size:clamp(28px,7vw,42px);
+  margin:0;
+  letter-spacing:-.03em;
+  line-height:1.08;
+}
+.sub{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+  margin-top:8px;
+}
+.sticky{
+  position:sticky;
+  top:0;
+  z-index:20;
+  margin:0 -4px;
+  padding:10px 4px 10px;
+  background:linear-gradient(to bottom, rgba(255,250,252,.98), rgba(255,250,252,.93), rgba(255,250,252,.82));
+  backdrop-filter:blur(16px);
+}
+.search-wrap{
+  position:relative;
+}
+.search{
+  width:100%;
+  border:1.5px solid var(--line);
+  border-radius:18px;
+  padding:15px 44px 15px 16px;
+  font-size:16px;
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+  box-shadow:0 5px 18px rgba(70,42,58,.04);
+}
+.search:focus{
+  border-color:#ff9bc1;
+  box-shadow:0 0 0 4px rgba(255,92,156,.08);
+}
+.clear-btn{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:#f7eff3;
+  color:var(--muted);
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.clear-btn.show{display:flex}
+.chips{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px 1px 2px;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--muted);
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:13px;
+  font-weight:700;
+}
+.chip.active{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 2px 12px;
+}
+.count{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+.hint{
+  font-size:12px;
+  color:#9a8f98;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.title-wrap{min-width:0}
+.title{
+  font-weight:900;
+  font-size:18px;
+  line-height:1.35;
+  word-break:break-word;
+}
+.badge{
+  flex:0 0 auto;
+  font-size:11px;
+  font-weight:800;
+  background:var(--soft);
+  color:#b23f72;
+  padding:6px 9px;
+  border-radius:999px;
+}
+.label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:900;
+  color:var(--muted);
+  letter-spacing:.06em;
+  margin-top:14px;
+}
+.bubble{
+  margin-top:7px;
+  padding:12px 13px;
+  border-radius:16px;
+  white-space:pre-wrap;
+  word-break:break-word;
+  line-height:1.65;
+  font-size:15px;
+}
+.shuri{
+  background:var(--soft2);
+  border:1px solid #e9ddff;
+}
+.people{
+  background:var(--soft);
+  border:1px solid #ffd9e8;
+}
+.line-list{
+  margin-top:7px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.line-copy-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--soft);
+  border:1px solid #ffd9e8;
+  border-radius:15px;
+  padding:10px 10px 10px 12px;
+}
+.line-text{
+  flex:1;
+  min-width:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+  line-height:1.5;
+  font-size:15px;
+}
+.mini-copy{
+  flex:0 0 auto;
+  border:0;
+  border-radius:11px;
+  background:var(--ink);
+  color:#fff;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:800;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+button.copy{
+  border:0;
+  border-radius:13px;
+  background:var(--ink);
+  color:white;
+  padding:11px 13px;
+  font-size:13px;
+  font-weight:800;
+}
+button.copy.secondary{
+  background:#fff;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+button.copy:active,.mini-copy:active,.chip:active{transform:scale(.98)}
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:54px 12px;
+  color:var(--muted);
+}
+.empty strong{
+  display:block;
+  color:var(--ink);
+  margin-bottom:5px;
+}
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%) translateY(20px);
+  background:#241d22;
+  color:white;
+  padding:11px 16px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  z-index:99;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+@media(max-width:520px){
+  .wrap{padding-left:12px;padding-right:12px}
+  .card{padding:15px}
+  .actions{display:grid;grid-template-columns:1fr}
+  button.copy{width:100%}
+  .mini-copy{padding:9px 11px}
+}
+@media(min-width:700px){
+  .wrap{padding-left:22px;padding-right:22px}
+  .grid{grid-template-columns:1fr 1fr}
+  .card.wide{grid-column:1/-1}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="kicker">🐰 しゅりりりりりり。配信</div>
+    <h1>🎁 ギフト芸図鑑</h1>
+    <div class="sub">ギフト芸・弾幕・コールのお約束まとめ。<br>探して、必要な返しだけワンタップでコピーできます。</div>
+  </section>
+
+  <div class="sticky">
+    <div class="search-wrap">
+      <input id="search" class="search" type="search" placeholder="ギフト名・セリフ・返しで検索">
+      <button id="clearBtn" class="clear-btn" aria-label="検索をクリア">×</button>
+    </div>
+    <div id="chips" class="chips"></div>
+  </div>
+
+  <div class="toolbar">
+    <div id="count" class="count"></div>
+    <div class="hint">タップでコピーできます</div>
+  </div>
+  <div id="grid" class="grid"></div>
+</div>
+<div id="toast" class="toast">コピーしました ✓</div>
+
+<script>
+const DATA = [{"title": "お歌弾幕", "category": "弾幕", "shuri": "", "response": "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨"}, {"title": "がんばれ弾幕", "category": "弾幕", "shuri": "せーのがせーで", "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️"}, {"title": "枠終わり", "category": "定番", "shuri": "次も回復しましょ🎶あっぷっぷ❗️", "response": "あっぷっぷ"}, {"title": "クラッカー", "category": "ギフト", "shuri": "しゅりの魅力にクラクラクラッカーってこと？そゆこと？助かっちゃったな🎉", "response": "そゆことー\nor\n-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-"}, {"title": "またくるよ", "category": "ギフト", "shuri": "またくるよくれたっことは、お約束❗️", "response": "やくそくー"}, {"title": "ちこぉよれ", "category": "掛け合い", "shuri": "〜〜〜〜ちこぉよれ〜❗️", "response": "おるよー"}, {"title": "ガチャチケ", "category": "ギフト", "shuri": "幸せなら拍手しよ🎶", "response": "👏👏"}, {"title": "くまさん・うさぎさん（大）（小）", "category": "ギフト", "shuri": "", "response": "チーム友達‼️"}, {"title": "愛している。", "category": "ギフト", "shuri": "", "response": "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨"}, {"title": "赤面チーク", "category": "ギフト", "shuri": "ぽっ", "response": "ぽっ"}, {"title": "自己紹介", "category": "定番", "shuri": "", "response": "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️"}, {"title": "ガチ恋口上", "category": "口上", "shuri": "", "response": "言いたいことがあるんだよ🫵🏻❤️‍🔥\nやっぱりしゅりりはかわいいよ😆💘\n好き好き大好きやっぱすき😘🫶🏼\nやっと見つけたお姫様👸✨️\n俺が生まれて来た理由👶🏻🍼︎\nそれはしゅりりに出会うため👨🚹👩🚺\n俺と一緒に人生歩もう🚶‍♀️💭\n世界で1番愛してる💕\n❤️あ❤️い❤️し❤️て❤️る❤️"}, {"title": "コール❗️(ポケモンmix)", "category": "コール", "shuri": "", "response": "パン🍞パン🍞パン🍞パン🍞ポケモンパン◓⃙⁣ 👾\nフレッシュ💎🍃ブレッド🥐伊藤パン🥖\n松たか子👩🏻松たか子👩🏻🎀\n山崎🏔春の🌸パン🍞祭り🏮👘✨"}, {"title": "やれんのか", "category": "掛け合い", "shuri": "やれんのかっていけんのかって", "response": "ﾎｲ!ﾎﾎｲ!"}, {"title": "💥🔫", "category": "掛け合い", "shuri": "ばーん！", "response": "うわあぁぁぁぁあああああああぁぁあ"}, {"title": "love so sweet", "category": "曲", "shuri": "", "response": "ジャジャジャジャーン!!"}, {"title": "一触即発禅ガール", "category": "曲", "shuri": "", "response": "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ"}, {"title": "SAN値", "category": "曲", "shuri": "", "response": "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!"}, {"title": "決め立ち", "category": "定番", "shuri": "", "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-"}, {"title": "えいちぴー↑↑", "category": "定番", "shuri": "", "response": "-` ̗ -` ̗ 💪🏻ﾅｲｴﾋﾟ🐰 ̖ ´- ̖ ´-\n-` ̗ -` ̗ 💪🏻ﾅ ｲ ｴ ﾋﾟ🐰 ̖ ´- ̖ ´-"}, {"title": "24時になった時", "category": "時間", "shuri": "", "response": "バトンタッチ❗️"}, {"title": "食べ物ギフト", "category": "ギフト", "shuri": "", "response": "いっぱい食べるきみがすき〜🎶"}, {"title": "ちがうとき", "category": "定番", "shuri": "", "response": "いっぱい食べるきみがすき〜🎶"}, {"title": "火炎放射", "category": "ギフト", "shuri": "", "response": "🔥 A CHI CHI A CHI 🔥"}, {"title": "あざらひ", "category": "ギフト", "shuri": "", "response": "あざらしのざらしあまざらし🦭"}, {"title": "いるか", "category": "ギフト", "shuri": "", "response": "いーるーか！いかいか！\nるるるるるるるる〜"}, {"title": "はいかわいい・今日も可愛い・いつも可愛い", "category": "定番", "shuri": "", "response": "きゅるん"}, {"title": "高嶺の花子さん", "category": "曲", "shuri": "好きなアイスの味はきっと〜", "response": "みんなの好きな味を教えてね！"}, {"title": "名称未設定", "category": "掛け合い", "shuri": "しぬ", "response": "そせい"}, {"title": "おみくじスロット(3個)が揃わなかった時", "category": "ギフト", "shuri": "", "response": "ｻﾞﾝﾈｰﾝ"}, {"title": "流れ金魚", "category": "ギフト", "shuri": "", "response": "ｷﾝｷﾞｮﾄﾞﾝ"}, {"title": "何が言いたいの？って時", "category": "定番", "shuri": "", "response": "覚悟？"}, {"title": "いぇいぇ", "category": "定番", "shuri": "", "response": "うぉうぉ"}, {"title": "えぐい", "category": "定番", "shuri": "", "response": "えっぐえっぐ🥚"}, {"title": "でか草", "category": "定番", "shuri": "", "response": "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/"}];
+const categories = ["すべて", ...new Set(DATA.map(x=>x.category))];
+let current = "すべて";
+
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
+const chips = document.getElementById("chips");
+const count = document.getElementById("count");
+const toast = document.getElementById("toast");
+const clearBtn = document.getElementById("clearBtn");
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+}
+function showToast(txt="コピーしました ✓") {
+  toast.textContent = txt; toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1300);
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); showToast(); }
+  catch(e) {
+    const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove(); showToast();
+  }
+}
+function renderChips() {
+  chips.innerHTML = categories.map(c=>`<button class="chip ${c===current?'active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+  chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{current=b.dataset.cat;renderChips();render();});
+}
+function render() {
+  const q = search.value.trim().toLowerCase();
+  const found = DATA.filter(x => {
+    const catOk = current==="すべて" || x.category===current;
+    const hay = [x.title,x.category,x.shuri,x.response].join(" ").toLowerCase();
+    return catOk && (!q || hay.includes(q));
+  });
+  count.textContent = `${found.length}件`;
+  if(!found.length) {
+    grid.innerHTML = `<div class="empty"><strong>見つからなかったよ 🐰</strong>別の言葉で検索してみてね。</div>`;
+    return;
+  }
+  grid.innerHTML = found.map((x,i)=>`
+    <article class="card ${x.response.length>90?'wide':''}">
+      <div class="top">
+        <div class="title">${esc(x.title)}</div>
+        <div class="badge">${esc(x.category)}</div>
+      </div>
+      ${x.shuri ? `
+        <div class="label">🐰 しゅり</div>
+        <div class="bubble shuri">${esc(x.shuri)}</div>
+      ` : ""}
+      <div class="label">📣 みんな</div>
+      ${
+        (() => {
+          const parts = x.response
+            .split(/\n+/)
+            .map(s => s.trim())
+            .filter(Boolean);
+
+          // 複数行、または「or」で分かれる返しは1つずつコピー可能にする
+          if (parts.length > 1 || /\s+or\s+/i.test(x.response)) {
+            const expanded = [];
+            parts.forEach(p => {
+              if (/^or$/i.test(p)) return;
+              p.split(/\s+or\s+/i).map(s => s.trim()).filter(Boolean).forEach(s => expanded.push(s));
+            });
+            return `<div class="line-list">${expanded.map(line=>`
+              <div class="line-copy-row">
+                <div class="line-text">${esc(line)}</div>
+                <button class="mini-copy" data-copy="${encodeURIComponent(line)}">コピー</button>
+              </div>`).join("")}</div>`;
+          }
+
+          return `<div class="bubble people">${esc(x.response)}</div>`;
+        })()
+      }
+      <div class="actions">
+        <button class="copy" data-copy="${encodeURIComponent(x.response)}">全部コピー</button>
+        ${x.shuri ? `<button class="copy secondary" data-copy="${encodeURIComponent(x.shuri+"\n"+x.response)}">掛け合い全部</button>` : ""}
+      </div>
+    </article>`).join("");
+  grid.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copyText(decodeURIComponent(b.dataset.copy)));
+}
+search.addEventListener("input", () => {
+  clearBtn.classList.toggle("show", !!search.value);
+  render();
+});
+clearBtn.addEventListener("click", () => {
+  search.value = "";
+  clearBtn.classList.remove("show");
+  search.focus();
+  render();
+});
+renderChips(); render();
+</script>
+</body>
+</html>
