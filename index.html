@@ -122,6 +122,128 @@ function render(){
   grid.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copyText(decodeURIComponent(b.dataset.copy)));
   bindLikeButtons();
 }
+
+let voteClient=null;
+let currentUser=null;
+let myVotes=new Set();
+let voteCounts=new Map();
+let rankingReady=false;
+
+async function initRecommendations(){
+  const cfg=window.RECOMMEND_CONFIG||{};
+  if(!cfg.supabaseUrl || !cfg.supabaseAnonKey || cfg.supabaseUrl.includes("YOUR_")){
+    rankingReady=false;
+    updateLikeButtons();
+    return;
+  }
+
+  try{
+    voteClient=supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey);
+
+    let {data:{session},error:sessionError}=await voteClient.auth.getSession();
+    if(sessionError) throw sessionError;
+
+    if(!session){
+      const {data,error}=await voteClient.auth.signInAnonymously();
+      if(error) throw error;
+      session=data.session;
+    }
+
+    currentUser=session.user;
+    rankingReady=true;
+    await loadVotes();
+  }catch(e){
+    console.error("Supabase init error:",e);
+    rankingReady=false;
+    updateLikeButtons();
+  }
+}
+
+async function loadVotes(){
+  if(!voteClient || !currentUser) return;
+
+  const {data,error}=await voteClient
+    .from("gift_votes")
+    .select("gift_id,user_id");
+
+  if(error) throw error;
+
+  voteCounts=new Map();
+  myVotes=new Set();
+
+  (data||[]).forEach(v=>{
+    voteCounts.set(v.gift_id,(voteCounts.get(v.gift_id)||0)+1);
+    if(v.user_id===currentUser.id){
+      myVotes.add(v.gift_id);
+    }
+  });
+
+  updateLikeButtons();
+
+  if(current==="🔥ランキング"){
+    render();
+  }
+}
+
+function decodeVoteId(id){
+  const pos=id.indexOf("::");
+  if(pos<0) return {gift:id,phrase:""};
+  return {gift:id.slice(0,pos),phrase:id.slice(pos+2)};
+}
+
+function updateLikeButtons(){
+  document.querySelectorAll("[data-like]").forEach(b=>{
+    const id=decodeURIComponent(b.dataset.like);
+    const count=voteCounts.get(id)||0;
+    const on=myVotes.has(id);
+    b.classList.toggle("on",on);
+    b.textContent=`${on?"♥":"♡"} ${count}`;
+    b.disabled=!rankingReady;
+  });
+}
+
+function bindLikeButtons(){
+  document.querySelectorAll("[data-like]").forEach(b=>{
+    const id=decodeURIComponent(b.dataset.like);
+
+    b.onclick=async()=>{
+      if(!rankingReady || !voteClient || !currentUser){
+        alert("いいね機能を読み込み中です。少し待ってからもう一度押してね。");
+        return;
+      }
+
+      b.disabled=true;
+
+      try{
+        if(myVotes.has(id)){
+          const {error}=await voteClient
+            .from("gift_votes")
+            .delete()
+            .eq("gift_id",id)
+            .eq("user_id",currentUser.id);
+
+          if(error) throw error;
+        }else{
+          const {error}=await voteClient
+            .from("gift_votes")
+            .insert({gift_id:id,user_id:currentUser.id});
+
+          if(error) throw error;
+        }
+
+        await loadVotes();
+      }catch(e){
+        console.error("Vote error:",e);
+        alert("♡の更新に失敗しました。ページを再読み込みしてもう一度試してね。");
+      }finally{
+        b.disabled=false;
+      }
+    };
+  });
+
+  updateLikeButtons();
+}
+
 search.oninput=render;renderChips();render();initRecommendations();
 </script>
 </body></html>
