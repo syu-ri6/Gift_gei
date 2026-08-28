@@ -30,7 +30,7 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
 <body>
 <div class="wrap">
 <h1>🔐 ギフト芸 管理・カンペ</h1>
-<div class="sub">追加・編集・削除はこの端末内に保存。固定コンテンツはロック済みです。</div>
+<div class="sub">追加・編集・削除はこの端末内に保存。現在は全項目を編集できる確認モードです。</div>
 <div class="tabs"><button class="tab active" data-tab="kanpe">カンペ</button><button class="tab" data-tab="manage">管理</button></div>
 
 <section id="kanpe" class="panel active">
@@ -44,6 +44,8 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
   <div class="section-body">
     <label>ギフト名</label><input id="title" placeholder="例：クラッカー">
     <label>カテゴリ</label><select id="category"><option>ギフト</option><option>掛け合い</option><option>定番</option><option>弾幕</option><option>口上</option><option>コール</option><option>曲</option><option>時間</option></select>
+    <label>💬 掛け合いの説明（必要なものだけ）</label>
+    <textarea id="interactionDescription" placeholder="例：しゅりが○○と言ったら、△△で返してね。空欄なら公開ページには表示されません。"></textarea>
     <label>📣 みんなの返し</label>
     <div id="responseOptionsBox"></div>
     <div class="actions">
@@ -85,7 +87,11 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
       <b>② GitHubの Gift_gei を開く</b><br>
       <b>③ 古い gifts.js を新しい gifts.js に入れ替える</b>
     </div>
-    <div class="actions"><button id="exportBtn" class="primary">公開用 gifts.js を保存</button></div>
+    <div class="actions">
+  <button id="exportBtn" class="primary">公開用 gifts.js を保存</button>
+  <button id="copyExportBtn" class="secondary">公開用データをコピー</button>
+</div>
+<div class="compact-note">iPhoneで保存に失敗する場合は「公開用データをコピー」を使って、GitHubの gifts.js の中身を全部貼り替えてください。</div>
   </div>
 </div>
 </section>
@@ -113,6 +119,8 @@ function normalizeItem(x){
   }
   item.responseOptions=opts;
   item.response=opts.join("\n");
+  item.interactionDescription=String(item.interactionDescription||"").trim();
+  item.locked=false;
   return item;
 }
 const BASE=RAW.map(normalizeItem),KEY="syuriri_gift_admin_v3";
@@ -137,12 +145,12 @@ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelect
 function renderKanpe(){
  const q=$("kanpeSearch").value.trim().toLowerCase();
  const found=data.filter(x=>!q||x.title.toLowerCase().includes(q));
- $("kanpeList").innerHTML=found.map(x=>`<div class="kanpe-card"><div class="kanpe-title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>${x.action?`<div class="small">🕺 動き・やること</div><div class="block note">${esc(x.action)}</div>`:""}${x.shuri?`<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>`:""}${x.responseOptions?.length?`<div class="small">📣 みんな</div>${x.responseOptions.map((r,i)=>`<div class="block people">${x.responseOptions.length>1?`<b>パターン${i+1}</b><br>`:""}${esc(r)}</div>`).join("")}`:""}${x.note?`<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>`:""}</div>`).join("")||`<div class="card">見つかりませんでした。</div>`;
+ $("kanpeList").innerHTML=found.map(x=>`<div class="kanpe-card"><div class="kanpe-title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>${x.interactionDescription?`<div class="small">💬 掛け合いの説明</div><div class="block note">${esc(x.interactionDescription)}</div>`:""}${x.action?`<div class="small">🕺 動き・やること</div><div class="block note">${esc(x.action)}</div>`:""}${x.shuri?`<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>`:""}${x.responseOptions?.length?`<div class="small">📣 みんな</div>${x.responseOptions.map((r,i)=>`<div class="block people">${x.responseOptions.length>1?`<b>パターン${i+1}</b><br>`:""}${esc(r)}</div>`).join("")}`:""}${x.note?`<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>`:""}</div>`).join("")||`<div class="card">見つかりませんでした。</div>`;
 }
 function renderManage(){
  const q=$("manageSearch").value.trim().toLowerCase();
  const found=data.map((x,i)=>({...x,_i:i})).filter(x=>!q||x.title.toLowerCase().includes(q));
- $("manageList").innerHTML=found.map(x=>`<div class="item ${x.locked?'locked':''}"><div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div><div class="meta">${x.locked?'固定コンテンツ':'編集・削除できます'} / 返し ${x.responseOptions?.length||0}件</div>${x.locked?'':`<div class="actions"><button class="secondary editBtn" data-i="${x._i}">編集</button><button class="danger delBtn" data-i="${x._i}">削除</button></div>`}</div>`).join("");
+ $("manageList").innerHTML=found.map(x=>`<div class="item"><div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div><div class="meta">編集・削除できます / 返し ${x.responseOptions?.length||0}件</div><div class="actions"><button class="secondary editBtn" data-i="${x._i}">編集</button><button class="danger delBtn" data-i="${x._i}">削除</button></div></div>`).join("");
  document.querySelectorAll(".editBtn").forEach(b=>b.onclick=()=>startEdit(+b.dataset.i));
  document.querySelectorAll(".delBtn").forEach(b=>b.onclick=()=>deleteItem(+b.dataset.i));
 }
@@ -151,7 +159,8 @@ function renderData(){
   const found = data.filter(x => !q || x.title.toLowerCase().includes(q));
   $("dataList").innerHTML = found.map(x => `
     <div class="item">
-      <div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div>
+      <div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>
+      ${x.interactionDescription ? `<div class="small">💬 掛け合いの説明</div><div class="block note">${esc(x.interactionDescription)}</div>` : ""}
       ${x.shuri ? `<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>` : ""}
       ${x.responseOptions?.length ? `<div class="small">📣 みんな</div>${x.responseOptions.map((r,i)=>`<div class="block people">${x.responseOptions.length>1?`<b>パターン${i+1}</b><br>`:""}${esc(r)}</div>`).join("")}` : ""}
       ${x.action ? `<div class="small">🕺 動き</div><div class="block note">${esc(x.action)}</div>` : ""}
@@ -159,13 +168,13 @@ function renderData(){
     </div>`).join("") || `<div class="card">見つかりませんでした。</div>`;
 }
 function clearForm(){
-  $("title").value="";$("category").value="ギフト";$("shuri").value="";$("action").value="";$("note").value="";
+  $("title").value="";$("category").value="ギフト";$("interactionDescription").value="";$("shuri").value="";$("action").value="";$("note").value="";
   $("responseOptionsBox").innerHTML=""; addOptionField("");
   editIndex=null;$("saveBtn").textContent="追加する";$("cancelBtn").style.display="none";
 }
 function startEdit(i){
-  const x=data[i];if(x.locked)return;editIndex=i;
-  $("title").value=x.title||"";$("category").value=x.category||"ギフト";$("shuri").value=x.shuri||"";$("action").value=x.action||"";$("note").value=x.note||"";
+  const x=data[i];editIndex=i;
+  $("title").value=x.title||"";$("category").value=x.category||"ギフト";$("interactionDescription").value=x.interactionDescription||"";$("shuri").value=x.shuri||"";$("action").value=x.action||"";$("note").value=x.note||"";
   $("responseOptionsBox").innerHTML="";(x.responseOptions?.length?x.responseOptions:[""]).forEach(v=>addOptionField(v));
   $("saveBtn").textContent="変更を保存";$("cancelBtn").style.display="";
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
@@ -173,19 +182,61 @@ function startEdit(i){
   $("addSection").classList.remove("closed");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function deleteItem(i){if(data[i].locked)return;if(confirm(`「${data[i].title}」を削除しますか？`)){data.splice(i,1);persist();renderManage();renderKanpe();renderData();toast("削除しました")}}
+function deleteItem(i){if(confirm(`「${data[i].title}」を削除しますか？`)){data.splice(i,1);persist();renderManage();renderKanpe();renderData();toast("削除しました")}}
 $("addOptionBtn").onclick=()=>addOptionField("");
 $("saveBtn").onclick=()=>{
   const title=$("title").value.trim(); if(!title){alert("ギフト名を入力してね");return}
   const responseOptions=getOptionsFromForm(); if(!responseOptions.length){alert("みんなの返しを1つ以上入れてね");return}
-  const obj={title,category:$("category").value,shuri:$("shuri").value.trim(),responseOptions,response:responseOptions.join("\n"),action:$("action").value.trim(),note:$("note").value.trim(),locked:false};
+  const obj={title,category:$("category").value,interactionDescription:$("interactionDescription").value.trim(),shuri:$("shuri").value.trim(),responseOptions,response:responseOptions.join("\n"),action:$("action").value.trim(),note:$("note").value.trim(),locked:false};
   if(editIndex===null)data.push(obj); else data[editIndex]=obj;
   persist(); renderManage(); renderKanpe(); renderData();
   const addedNew = (editIndex===null);
   clearForm(); toast(addedNew?"追加しました":"変更しました");
 };
 $("cancelBtn").onclick=clearForm;$("kanpeSearch").oninput=renderKanpe;$("manageSearch").oninput=renderManage;$("dataSearch").oninput=renderData;
-$("exportBtn").onclick=()=>{const text="window.GIFT_DATA = "+JSON.stringify(data,null,2)+";\n";const blob=new Blob([text],{type:"text/javascript;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gifts.js";document.body.appendChild(a);a.click();a.remove();toast("gifts.js を保存しました")};
+function makeExportText(){
+  return "window.GIFT_DATA = "+JSON.stringify(data,null,2)+";\n";
+}
+async function copyExportText(){
+  const text=makeExportText();
+  try{
+    await navigator.clipboard.writeText(text);
+    toast("公開用データをコピーしました");
+  }catch(e){
+    const ta=document.createElement("textarea");
+    ta.value=text;
+    ta.style.position="fixed";
+    ta.style.opacity="0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    toast("公開用データをコピーしました");
+  }
+}
+$("copyExportBtn").onclick=copyExportText;
+$("exportBtn").onclick=()=>{
+  const text=makeExportText();
+  try{
+    const blob=new Blob([text],{type:"application/javascript;charset=utf-8"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    a.download="gifts.js";
+    a.style.display="none";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{
+      URL.revokeObjectURL(url);
+      a.remove();
+    },1500);
+    toast("gifts.js の保存を開始しました");
+  }catch(e){
+    copyExportText();
+    alert("ファイル保存ができなかったので、公開用データをクリップボードにコピーしました。");
+  }
+};
 function openManageSection(id){
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
