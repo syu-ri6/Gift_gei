@@ -41,6 +41,17 @@ h1{font-size:34px;margin:12px 0 6px;line-height:1.1}.sub{color:var(--muted);line
 .vote-status.ok{color:#237a45}
 .vote-status.err{color:#b42318;background:#fff1f0;border:1px solid #ffd0cc;border-radius:10px;padding:8px}
 
+
+.rank-compact-list{display:flex;flex-direction:column;gap:8px}
+.rank-compact-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 13px;box-shadow:var(--shadow)}
+.rank-medal{font-size:22px;font-weight:900;text-align:center}
+.rank-main{min-width:0}
+.rank-gift-title{font-size:16px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-meta{display:flex;gap:6px;align-items:center;margin-top:4px}
+.rank-cat{font-size:10px;font-weight:900;background:var(--soft);color:#af3f72;border-radius:999px;padding:4px 7px}
+.rank-like{font-size:14px;font-weight:900;color:#b3346e;background:#fff0f6;border-radius:999px;padding:7px 10px;white-space:nowrap}
+.rank-help{font-size:12px;color:var(--muted);margin:4px 2px 10px}
+
 </style>
 </head>
 <body>
@@ -87,28 +98,49 @@ function renderChips(){
 }
 function render(){
   if(current==="🔥ランキング"){
-    const rows=[...voteCounts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+    const rows=[...voteCounts.entries()]
+      .sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+
     count.textContent=`${rows.length}件`;
+
     if(!rankingReady){
       grid.innerHTML=`<div class="empty">ランキングを読み込み中…</div>`;
       return;
     }
+
     if(!rows.length){
       grid.innerHTML=`<div class="empty">まだ♡がありません。好きなギフト芸に最初の1票をどうぞ 🐰</div>`;
       return;
     }
+
     const medals=["🥇","🥈","🥉"];
-    grid.innerHTML=rows.map(([name,n],i)=>{
-      const x=DATA.find(v=>v.title===name);
-      return `<article class="card wide">
-        <div class="top">
-          <div class="title">${i<3?medals[i]:`${i+1}位`} ${esc(name)}</div>
-          <div class="badge">♥ ${n}</div>
-        </div>
-        ${x?.interactionDescription?`<div class="interaction-box"><div class="interaction-label">💬 掛け合いの説明</div>${esc(x.interactionDescription)}</div>`:""}${x?.shuri?`<div class="label">🐰 しゅり</div><div class="bubble shuri">${esc(x.shuri)}</div>`:""}
-        ${x?.responseOptions?.length?`<div class="label">📣 みんな</div><div class="bubble people">${esc(x.responseOptions.join("\n"))}</div>`:""}
-      </article>`;
-    }).join("");
+    grid.innerHTML=`
+      <div class="rank-help">人気のギフト芸だけをサクッと確認できます。タイトルをタップするとそのギフトを検索します。</div>
+      <div class="rank-compact-list">
+        ${rows.map(([name,n],i)=>{
+          const x=DATA.find(v=>v.title===name);
+          const rank=i<3?medals[i]:`${i+1}`;
+          return `<button class="rank-compact-row" data-rank-gift="${encodeURIComponent(name)}">
+            <div class="rank-medal">${rank}</div>
+            <div class="rank-main">
+              <div class="rank-gift-title">${esc(name)}</div>
+              <div class="rank-meta">${x?.category?`<span class="rank-cat">${esc(x.category)}</span>`:""}</div>
+            </div>
+            <div class="rank-like">♥ ${n}</div>
+          </button>`;
+        }).join("")}
+      </div>`;
+
+    grid.querySelectorAll("[data-rank-gift]").forEach(b=>{
+      b.onclick=()=>{
+        const name=decodeURIComponent(b.dataset.rankGift);
+        current="すべて";
+        search.value=name;
+        renderChips();
+        render();
+        setTimeout(()=>search.scrollIntoView({behavior:"smooth",block:"start"}),50);
+      };
+    });
     return;
   }
   const q=search.value.trim().toLowerCase();
