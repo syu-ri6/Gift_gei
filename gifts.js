@@ -15,13 +15,13 @@ window.GIFT_DATA = [
     "title": "がんばれ弾幕",
     "category": "弾幕",
     "shuri": "せーのがせーで",
-    "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️"
-    ]
+    ],
+    "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "枠終わり",
@@ -231,13 +231,13 @@ window.GIFT_DATA = [
     "title": "決め立ち",
     "category": "定番",
     "shuri": "",
-    "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-"
-    ]
+    ],
+    "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "えいちぴー↑↑",
@@ -276,18 +276,6 @@ window.GIFT_DATA = [
     ]
   },
   {
-    "title": "ちがうとき",
-    "category": "定番",
-    "shuri": "",
-    "response": "いっぱい食べるきみがすき〜🎶",
-    "locked": false,
-    "note": "",
-    "action": "",
-    "responseOptions": [
-      "いっぱい食べるきみがすき〜🎶"
-    ]
-  },
-  {
     "title": "火炎放射",
     "category": "ギフト",
     "shuri": "",
@@ -300,16 +288,16 @@ window.GIFT_DATA = [
     ]
   },
   {
-    "title": "あざらひ",
+    "title": "あざらし",
     "category": "ギフト",
     "shuri": "",
-    "response": "あざらしのざらしあまざらし🦭",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "あざらしのざらしあまざらし🦭"
-    ]
+    ],
+    "response": "あざらしのざらしあまざらし🦭",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "いるか",
@@ -327,13 +315,13 @@ window.GIFT_DATA = [
     "title": "はいかわいい・今日も可愛い・いつも可愛い",
     "category": "定番",
     "shuri": "",
-    "response": "きゅるん",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "きゅるん"
-    ]
+    ],
+    "response": "きゅるん",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "高嶺の花子さん",
@@ -348,16 +336,16 @@ window.GIFT_DATA = [
     ]
   },
   {
-    "title": "名称未設定",
+    "title": "しぬ",
     "category": "掛け合い",
     "shuri": "しぬ",
-    "response": "そせい",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "そせい"
-    ]
+    ],
+    "response": "そせい",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "おみくじスロット(3個)が揃わなかった時",
@@ -381,18 +369,6 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "ｷﾝｷﾞｮﾄﾞﾝ"
-    ]
-  },
-  {
-    "title": "何が言いたいの？って時",
-    "category": "定番",
-    "shuri": "",
-    "response": "覚悟？",
-    "locked": false,
-    "note": "",
-    "action": "",
-    "responseOptions": [
-      "覚悟？"
     ]
   },
   {
@@ -420,15 +396,15 @@ window.GIFT_DATA = [
     ]
   },
   {
-    "title": "でか草",
+    "title": "おやすみの挨拶",
     "category": "定番",
     "shuri": "",
-    "response": "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
-      "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/"
-    ]
+      "ぐっしゅりり"
+    ],
+    "response": "ぐっしゅりり",
+    "action": "",
+    "note": "",
+    "locked": false
   }
 ];
