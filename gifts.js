@@ -4,12 +4,13 @@ window.GIFT_DATA = [
     "category": "弾幕",
     "shuri": "",
     "response": "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨",
-    "locked": true,
+    "locked": false,
     "note": "",
     "action": "",
     "responseOptions": [
       "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "がんばれ弾幕",
@@ -21,7 +22,8 @@ window.GIFT_DATA = [
     "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   },
   {
     "title": "枠終わり",
@@ -33,7 +35,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "あっぷっぷ"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "クラッカー",
@@ -46,7 +49,8 @@ window.GIFT_DATA = [
     "responseOptions": [
       "そゆことー",
       "-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "またくるよ",
@@ -58,23 +62,26 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "やくそくー"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "ちこぉよれ",
     "category": "掛け合い",
+    "interactionDescription": "｢神様がカミカミしちゃるで、かみかみ、だからもっとちこぉよれ〜」の後に言うよっ",
     "shuri": "〜〜〜〜ちこぉよれ〜❗️",
-    "response": "おるよー",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "おるよー"
-    ]
+    ],
+    "response": "おるよー",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "ガチャチケ",
     "category": "ギフト",
+    "interactionDescription": "幸せなら拍手しよっ🎶で一緒に拍手しよう‼️",
     "shuri": "幸せなら拍手しよ🎶",
     "responseOptions": [
       "👏👏"
@@ -87,57 +94,64 @@ window.GIFT_DATA = [
   {
     "title": "くまさん・うさぎさん（大）（小）",
     "category": "ギフト",
+    "interactionDescription": "チーム友達の曲が流れるから一緒に言ってね🎶",
     "shuri": "",
-    "response": "チーム友達‼️",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "チーム友達‼️"
-    ]
+    ],
+    "response": "チーム友達‼️",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
-    "title": "愛している。",
+    "title": "愛してる‼️",
     "category": "ギフト",
+    "interactionDescription": "ラブビームって曲と一緒にいうよ‼️",
     "shuri": "",
-    "response": "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
-      "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨"
-    ]
+      "愛してるっ🫶",
+      "ちゅ‼️",
+      "ﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨"
+    ],
+    "response": "愛してるっ🫶\nちゅ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "赤面チーク",
     "category": "ギフト",
+    "interactionDescription": "「可愛くしてくれてありがと！！」の後にどうぞ！",
     "shuri": "ぽっ",
-    "response": "ぽっ",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "ぽっ"
-    ]
+    ],
+    "response": "ぽっ",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "自己紹介",
     "category": "定番",
+    "interactionDescription": "私がラップで自己紹介したあとに‼️",
     "shuri": "",
-    "response": "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
-      "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️"
-    ]
+      "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ",
+      "🐰う ぇ る か む ‼️"
+    ],
+    "response": "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "ガチ恋口上",
     "category": "口上",
     "shuri": "",
     "response": "言いたいことがあるんだよ🫵🏻❤️‍🔥\nやっぱりしゅりりはかわいいよ😆💘\n好き好き大好きやっぱすき😘🫶🏼\nやっと見つけたお姫様👸✨️\n俺が生まれて来た理由👶🏻🍼︎\nそれはしゅりりに出会うため👨🚹👩🚺\n俺と一緒に人生歩もう🚶‍♀️💭\n世界で1番愛してる💕\n❤️あ❤️い❤️し❤️て❤️る❤️",
-    "locked": true,
+    "locked": false,
     "note": "",
     "action": "",
     "responseOptions": [
@@ -150,14 +164,15 @@ window.GIFT_DATA = [
       "俺と一緒に人生歩もう🚶‍♀️💭",
       "世界で1番愛してる💕",
       "❤️あ❤️い❤️し❤️て❤️る❤️"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "コール❗️(ポケモンmix)",
     "category": "コール",
     "shuri": "",
     "response": "パン🍞パン🍞パン🍞パン🍞ポケモンパン◓⃙⁣ 👾\nフレッシュ💎🍃ブレッド🥐伊藤パン🥖\n松たか子👩🏻松たか子👩🏻🎀\n山崎🏔春の🌸パン🍞祭り🏮👘✨",
-    "locked": true,
+    "locked": false,
     "note": "",
     "action": "",
     "responseOptions": [
@@ -165,67 +180,73 @@ window.GIFT_DATA = [
       "フレッシュ💎🍃ブレッド🥐伊藤パン🥖",
       "松たか子👩🏻松たか子👩🏻🎀",
       "山崎🏔春の🌸パン🍞祭り🏮👘✨"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "やれんのか",
     "category": "掛け合い",
+    "interactionDescription": "「やれんのかっていけんのかって！」のあとに！",
     "shuri": "やれんのかっていけんのかって",
-    "response": "ﾎｲ!ﾎﾎｲ!",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "ﾎｲ!ﾎﾎｲ!"
-    ]
+    ],
+    "response": "ﾎｲ!ﾎﾎｲ!",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "💥🔫",
     "category": "掛け合い",
+    "interactionDescription": "私が撃ったら撃ち抜かれちゃえ‼️",
     "shuri": "ばーん！",
-    "response": "うわあぁぁぁぁあああああああぁぁあ",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "うわあぁぁぁぁあああああああぁぁあ"
-    ]
+    ],
+    "response": "うわあぁぁぁぁあああああああぁぁあ",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "love so sweet",
     "category": "曲",
+    "interactionDescription": "「運命ってこと！？」って言ったら‼️",
     "shuri": "",
-    "response": "ジャジャジャジャーン!!",
-    "locked": true,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "ジャジャジャジャーン!!"
-    ]
+    ],
+    "response": "ジャジャジャジャーン!!",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "一触即発禅ガール",
     "category": "曲",
+    "interactionDescription": "一触即発☆禅ガールながれたら！",
     "shuri": "",
-    "response": "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ",
-    "locked": true,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ"
-    ]
+    ],
+    "response": "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
-    "title": "SAN値",
-    "category": "曲",
+    "title": "SAN値回復",
+    "category": "ギフト",
+    "interactionDescription": "曲と一緒に‼️",
     "shuri": "",
-    "response": "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!",
-    "locked": true,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!"
-    ]
+    ],
+    "response": "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "決め立ち",
@@ -237,7 +258,8 @@ window.GIFT_DATA = [
     "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   },
   {
     "title": "えいちぴー↑↑",
@@ -249,7 +271,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "-` ̗ -` ̗ 💪🏻ﾅｲｴﾋﾟ🐰 ̖ ´- ̖ ´-\n-` ̗ -` ̗ 💪🏻ﾅ ｲ ｴ ﾋﾟ🐰 ̖ ´- ̖ ´-"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "24時になった時",
@@ -261,31 +284,34 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "バトンタッチ❗️"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "食べ物ギフト",
     "category": "ギフト",
+    "interactionDescription": "「いただきます！」っていったら",
     "shuri": "",
-    "response": "いっぱい食べるきみがすき〜🎶",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
-      "いっぱい食べるきみがすき〜🎶"
-    ]
+      "差し上げます🙌"
+    ],
+    "response": "差し上げます🙌",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "火炎放射",
     "category": "ギフト",
+    "interactionDescription": "ゴールドフィンガーが流れたら‼️",
     "shuri": "",
-    "response": "🔥 A CHI CHI A CHI 🔥",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "🔥 A CHI CHI A CHI 🔥"
-    ]
+    ],
+    "response": "🔥 A CHI CHI A CHI 🔥",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "あざらし",
@@ -297,7 +323,8 @@ window.GIFT_DATA = [
     "response": "あざらしのざらしあまざらし🦭",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   },
   {
     "title": "いるか",
@@ -310,11 +337,13 @@ window.GIFT_DATA = [
     "response": "いーるーか！いかいか！\nるるるるるるるる〜🐬",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   },
   {
     "title": "はいかわいい・今日も可愛い・いつも可愛い",
     "category": "定番",
+    "interactionDescription": "",
     "shuri": "",
     "responseOptions": [
       "きゅるん"
@@ -327,14 +356,15 @@ window.GIFT_DATA = [
   {
     "title": "高嶺の花子さん",
     "category": "曲",
+    "interactionDescription": "会いたいんだ今すぐその角から飛び出してきてくれないか、好きなアイスの味はきっと？？？せーの‼️",
     "shuri": "好きなアイスの味はきっと〜",
-    "response": "みんなの好きな味を教えてね！",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "みんなの好きな味を教えてね！"
-    ]
+    ],
+    "response": "みんなの好きな味を教えてね！",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "しぬ",
@@ -346,7 +376,8 @@ window.GIFT_DATA = [
     "response": "そせい",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   },
   {
     "title": "おみくじスロット(3個)が揃わなかった時",
@@ -358,7 +389,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "ｻﾞﾝﾈｰﾝ"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "流れ金魚",
@@ -370,7 +402,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "ｷﾝｷﾞｮﾄﾞﾝ"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "いぇいぇ",
@@ -382,7 +415,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "うぉうぉ"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "えぐい",
@@ -394,7 +428,8 @@ window.GIFT_DATA = [
     "action": "",
     "responseOptions": [
       "えっぐえっぐ🥚"
-    ]
+    ],
+    "interactionDescription": ""
   },
   {
     "title": "おやすみの挨拶",
@@ -406,6 +441,7 @@ window.GIFT_DATA = [
     "response": "ぐっしゅりり",
     "action": "",
     "note": "",
-    "locked": false
+    "locked": false,
+    "interactionDescription": ""
   }
 ];
