@@ -76,13 +76,13 @@ window.GIFT_DATA = [
     "title": "ガチャチケ",
     "category": "ギフト",
     "shuri": "幸せなら拍手しよ🎶",
-    "response": "👏👏",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
       "👏👏"
-    ]
+    ],
+    "response": "👏👏",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "くまさん・うさぎさん（大）（小）",
@@ -303,13 +303,14 @@ window.GIFT_DATA = [
     "title": "いるか",
     "category": "ギフト",
     "shuri": "",
-    "response": "いーるーか！いかいか！\nるるるるるるるる〜",
-    "locked": false,
-    "note": "",
-    "action": "",
     "responseOptions": [
-      "いーるーか！いかいか！\nるるるるるるるる〜"
-    ]
+      "いーるーか！いかいか！",
+      "るるるるるるるる〜🐬"
+    ],
+    "response": "いーるーか！いかいか！\nるるるるるるるる〜🐬",
+    "action": "",
+    "note": "",
+    "locked": false
   },
   {
     "title": "はいかわいい・今日も可愛い・いつも可愛い",
