@@ -6,7 +6,10 @@ window.GIFT_DATA = [
     "response": "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "🎼.•*¨*•.♪💪🏻🐰💗🎵•*¨*•.¸¸💪🏻🐰💥🎶 .•*¨*•.♪🎵💪🏻🐰💗•*¨*•.¸¸🎶✨👊🏻✨"
+    ]
   },
   {
     "title": "がんばれ弾幕",
@@ -15,7 +18,10 @@ window.GIFT_DATA = [
     "response": "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️がんばれ‼️頑張れ‼️だ‼️"
+    ]
   },
   {
     "title": "枠終わり",
@@ -24,16 +30,23 @@ window.GIFT_DATA = [
     "response": "あっぷっぷ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "あっぷっぷ"
+    ]
   },
   {
     "title": "クラッカー",
     "category": "ギフト",
     "shuri": "しゅりの魅力にクラクラクラッカーってこと？そゆこと？助かっちゃったな🎉",
-    "response": "そゆことー\nor\n-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-",
+    "response": "そゆことー\n-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "そゆことー",
+      "-` ̗ -` ̗ 🎉ﾅｲｸﾗ 🎉 ̖ ´- ̖ ´-"
+    ]
   },
   {
     "title": "またくるよ",
@@ -42,7 +55,10 @@ window.GIFT_DATA = [
     "response": "やくそくー",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "やくそくー"
+    ]
   },
   {
     "title": "ちこぉよれ",
@@ -51,7 +67,10 @@ window.GIFT_DATA = [
     "response": "おるよー",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "おるよー"
+    ]
   },
   {
     "title": "ガチャチケ",
@@ -60,7 +79,10 @@ window.GIFT_DATA = [
     "response": "👏👏",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "👏👏"
+    ]
   },
   {
     "title": "くまさん・うさぎさん（大）（小）",
@@ -69,7 +91,10 @@ window.GIFT_DATA = [
     "response": "チーム友達‼️",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "チーム友達‼️"
+    ]
   },
   {
     "title": "愛している。",
@@ -78,7 +103,10 @@ window.GIFT_DATA = [
     "response": "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "愛してるっ🫶\nちゅっ‼️\nﾊﾞｲ👋✨ﾊﾞｲ🤙✨ﾊﾞｲ🤟✨ﾊﾞｲ🙌✨"
+    ]
   },
   {
     "title": "赤面チーク",
@@ -87,7 +115,10 @@ window.GIFT_DATA = [
     "response": "ぽっ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "ぽっ"
+    ]
   },
   {
     "title": "自己紹介",
@@ -96,7 +127,10 @@ window.GIFT_DATA = [
     "response": "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "チェケチェケ(σﾟ∀ﾟ)σ☝︎( ^ = ^)☝︎ｱｹﾞｱｹﾞ\n🐰う ぇ る か む ‼️"
+    ]
   },
   {
     "title": "ガチ恋口上",
@@ -105,7 +139,18 @@ window.GIFT_DATA = [
     "response": "言いたいことがあるんだよ🫵🏻❤️‍🔥\nやっぱりしゅりりはかわいいよ😆💘\n好き好き大好きやっぱすき😘🫶🏼\nやっと見つけたお姫様👸✨️\n俺が生まれて来た理由👶🏻🍼︎\nそれはしゅりりに出会うため👨🚹👩🚺\n俺と一緒に人生歩もう🚶‍♀️💭\n世界で1番愛してる💕\n❤️あ❤️い❤️し❤️て❤️る❤️",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "言いたいことがあるんだよ🫵🏻❤️‍🔥",
+      "やっぱりしゅりりはかわいいよ😆💘",
+      "好き好き大好きやっぱすき😘🫶🏼",
+      "やっと見つけたお姫様👸✨️",
+      "俺が生まれて来た理由👶🏻🍼︎",
+      "それはしゅりりに出会うため👨🚹👩🚺",
+      "俺と一緒に人生歩もう🚶‍♀️💭",
+      "世界で1番愛してる💕",
+      "❤️あ❤️い❤️し❤️て❤️る❤️"
+    ]
   },
   {
     "title": "コール❗️(ポケモンmix)",
@@ -114,7 +159,13 @@ window.GIFT_DATA = [
     "response": "パン🍞パン🍞パン🍞パン🍞ポケモンパン◓⃙⁣ 👾\nフレッシュ💎🍃ブレッド🥐伊藤パン🥖\n松たか子👩🏻松たか子👩🏻🎀\n山崎🏔春の🌸パン🍞祭り🏮👘✨",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "パン🍞パン🍞パン🍞パン🍞ポケモンパン◓⃙⁣ 👾",
+      "フレッシュ💎🍃ブレッド🥐伊藤パン🥖",
+      "松たか子👩🏻松たか子👩🏻🎀",
+      "山崎🏔春の🌸パン🍞祭り🏮👘✨"
+    ]
   },
   {
     "title": "やれんのか",
@@ -123,7 +174,10 @@ window.GIFT_DATA = [
     "response": "ﾎｲ!ﾎﾎｲ!",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "ﾎｲ!ﾎﾎｲ!"
+    ]
   },
   {
     "title": "💥🔫",
@@ -132,7 +186,10 @@ window.GIFT_DATA = [
     "response": "うわあぁぁぁぁあああああああぁぁあ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "うわあぁぁぁぁあああああああぁぁあ"
+    ]
   },
   {
     "title": "love so sweet",
@@ -141,7 +198,10 @@ window.GIFT_DATA = [
     "response": "ジャジャジャジャーン!!",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "ジャジャジャジャーン!!"
+    ]
   },
   {
     "title": "一触即発禅ガール",
@@ -150,7 +210,10 @@ window.GIFT_DATA = [
     "response": "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "┏( ^o^)┓ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ┗( ^o^)┛ﾄﾞｺﾄﾞｺﾄﾞｺﾄﾞｺ"
+    ]
   },
   {
     "title": "SAN値",
@@ -159,7 +222,10 @@ window.GIFT_DATA = [
     "response": "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!",
     "locked": true,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "＼(・ω・＼)SAN値!(／・ω・)／ピンチ!"
+    ]
   },
   {
     "title": "決め立ち",
@@ -168,7 +234,10 @@ window.GIFT_DATA = [
     "response": "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "-` ̗ -` ̗ 💃ｷﾒﾀﾞﾁ🕺 ̖ ´- ̖ ´-"
+    ]
   },
   {
     "title": "えいちぴー↑↑",
@@ -177,7 +246,10 @@ window.GIFT_DATA = [
     "response": "-` ̗ -` ̗ 💪🏻ﾅｲｴﾋﾟ🐰 ̖ ´- ̖ ´-\n-` ̗ -` ̗ 💪🏻ﾅ ｲ ｴ ﾋﾟ🐰 ̖ ´- ̖ ´-",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "-` ̗ -` ̗ 💪🏻ﾅｲｴﾋﾟ🐰 ̖ ´- ̖ ´-\n-` ̗ -` ̗ 💪🏻ﾅ ｲ ｴ ﾋﾟ🐰 ̖ ´- ̖ ´-"
+    ]
   },
   {
     "title": "24時になった時",
@@ -186,7 +258,10 @@ window.GIFT_DATA = [
     "response": "バトンタッチ❗️",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "バトンタッチ❗️"
+    ]
   },
   {
     "title": "食べ物ギフト",
@@ -195,7 +270,10 @@ window.GIFT_DATA = [
     "response": "いっぱい食べるきみがすき〜🎶",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "いっぱい食べるきみがすき〜🎶"
+    ]
   },
   {
     "title": "ちがうとき",
@@ -204,7 +282,10 @@ window.GIFT_DATA = [
     "response": "いっぱい食べるきみがすき〜🎶",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "いっぱい食べるきみがすき〜🎶"
+    ]
   },
   {
     "title": "火炎放射",
@@ -213,7 +294,10 @@ window.GIFT_DATA = [
     "response": "🔥 A CHI CHI A CHI 🔥",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "🔥 A CHI CHI A CHI 🔥"
+    ]
   },
   {
     "title": "あざらひ",
@@ -222,7 +306,10 @@ window.GIFT_DATA = [
     "response": "あざらしのざらしあまざらし🦭",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "あざらしのざらしあまざらし🦭"
+    ]
   },
   {
     "title": "いるか",
@@ -231,7 +318,10 @@ window.GIFT_DATA = [
     "response": "いーるーか！いかいか！\nるるるるるるるる〜",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "いーるーか！いかいか！\nるるるるるるるる〜"
+    ]
   },
   {
     "title": "はいかわいい・今日も可愛い・いつも可愛い",
@@ -240,7 +330,10 @@ window.GIFT_DATA = [
     "response": "きゅるん",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "きゅるん"
+    ]
   },
   {
     "title": "高嶺の花子さん",
@@ -249,7 +342,10 @@ window.GIFT_DATA = [
     "response": "みんなの好きな味を教えてね！",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "みんなの好きな味を教えてね！"
+    ]
   },
   {
     "title": "名称未設定",
@@ -258,7 +354,10 @@ window.GIFT_DATA = [
     "response": "そせい",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "そせい"
+    ]
   },
   {
     "title": "おみくじスロット(3個)が揃わなかった時",
@@ -267,7 +366,10 @@ window.GIFT_DATA = [
     "response": "ｻﾞﾝﾈｰﾝ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "ｻﾞﾝﾈｰﾝ"
+    ]
   },
   {
     "title": "流れ金魚",
@@ -276,7 +378,10 @@ window.GIFT_DATA = [
     "response": "ｷﾝｷﾞｮﾄﾞﾝ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "ｷﾝｷﾞｮﾄﾞﾝ"
+    ]
   },
   {
     "title": "何が言いたいの？って時",
@@ -285,7 +390,10 @@ window.GIFT_DATA = [
     "response": "覚悟？",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "覚悟？"
+    ]
   },
   {
     "title": "いぇいぇ",
@@ -294,7 +402,10 @@ window.GIFT_DATA = [
     "response": "うぉうぉ",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "うぉうぉ"
+    ]
   },
   {
     "title": "えぐい",
@@ -303,7 +414,10 @@ window.GIFT_DATA = [
     "response": "えっぐえっぐ🥚",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "えっぐえっぐ🥚"
+    ]
   },
   {
     "title": "でか草",
@@ -312,6 +426,9 @@ window.GIFT_DATA = [
     "response": "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/",
     "locked": false,
     "note": "",
-    "action": ""
+    "action": "",
+    "responseOptions": [
+      "╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/ ╲/╲/"
+    ]
   }
 ];
