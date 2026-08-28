@@ -11,27 +11,20 @@
 .tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;padding:10px 0;background:rgba(255,249,252,.95);backdrop-filter:blur(14px)}.tab{flex:1;border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;font-weight:900}.tab.active{background:var(--ink);color:#fff}
 .panel{display:none}.panel.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:12px;box-shadow:var(--shadow)}
 .search{position:sticky;top:66px;z-index:10;background:rgba(255,249,252,.95);padding:8px 0}.search input,input,textarea,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:16px;background:#fff;color:var(--ink)}
-label{display:block;font-size:12px;font-weight:900;color:var(--muted);margin:12px 0 6px}textarea{min-height:88px;resize:vertical}
+label{display:block;font-size:12px;font-weight:900;color:var(--muted);margin:12px 0 6px}textarea{min-height:76px;resize:vertical}
 details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summary{font-weight:900;cursor:pointer}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{border:0;border-radius:12px;padding:10px 13px;font-weight:900}.primary{background:var(--ink);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.danger{background:#fff1f0;color:var(--danger);border:1px solid #ffd0cc}
 .list{display:grid;gap:10px;margin-top:10px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.item.locked{opacity:.65}.title{font-weight:900;font-size:17px}.meta{font-size:11px;color:var(--muted);margin-top:4px}.badge{display:inline-block;background:var(--soft);padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900;margin-left:6px}.lock{background:#f1f1f1}
 .kanpe-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}.kanpe-title{font-size:22px;font-weight:900}.small{font-size:12px;color:var(--muted);font-weight:900;margin-top:10px}.block{margin-top:7px;padding:12px;border-radius:15px;white-space:pre-wrap;word-break:break-word;line-height:1.6}.shuri{background:var(--lav)}.people{background:var(--soft)}.note{background:var(--yellow)}
 .publish{border:2px solid #ffd8e7;background:linear-gradient(180deg,#fff,#fff7fb)}.steps{font-size:13px;color:var(--muted);line-height:1.7}.steps b{color:var(--ink)}
+.section-box{background:#fff;border:1px solid var(--line);border-radius:20px;margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;font-weight:900;cursor:pointer}.section-head .chev{font-size:18px;transition:.2s}.section-box.closed .section-body{display:none}.section-box.closed .chev{transform:rotate(-90deg)}.section-body{padding:0 16px 16px}
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.bottom-nav button{padding:8px 2px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:12px;color:var(--ink)}.bottom-nav button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.compact-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}.jump-anchor{scroll-margin-top:80px}
+.option-row{background:#fff8fb;border:1px solid #f5d7e4;border-radius:16px;padding:10px;margin-top:8px}.option-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:900;color:var(--muted);margin-bottom:6px}
+.option-help{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(15px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;opacity:0;transition:.2s;z-index:99}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(min-width:720px){.list{grid-template-columns:1fr 1fr}}
-
-.section-box{background:#fff;border:1px solid var(--line);border-radius:20px;margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;font-weight:900;cursor:pointer}
-.section-head .chev{font-size:18px;transition:.2s}
-.section-box.closed .section-body{display:none}
-.section-box.closed .chev{transform:rotate(-90deg)}
-.section-body{padding:0 16px 16px}
-.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.bottom-nav button{padding:8px 2px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:12px;color:var(--ink)}
-.bottom-nav button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.compact-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}
-.jump-anchor{scroll-margin-top:80px}
-
 </style>
 </head>
 <body>
@@ -51,7 +44,12 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
   <div class="section-body">
     <label>ギフト名</label><input id="title" placeholder="例：クラッカー">
     <label>カテゴリ</label><select id="category"><option>ギフト</option><option>掛け合い</option><option>定番</option><option>弾幕</option><option>口上</option><option>コール</option><option>曲</option><option>時間</option></select>
-    <label>📣 みんなの返し</label><textarea id="response" placeholder="リスナーが返す内容"></textarea>
+    <label>📣 みんなの返し</label>
+    <div id="responseOptionsBox"></div>
+    <div class="actions">
+      <button id="addOptionBtn" class="secondary" type="button">別の言い方を追加 ＋</button>
+    </div>
+    <div class="option-help">1枠＝1回でコピーしたい内容。別の言い方が増えたら追加してください。1枠の中は複数行でもOK。</div>
     <details>
       <summary>＋ しゅりのセリフ・動き・メモ</summary>
       <label>🐰 しゅりのセリフ</label><textarea id="shuri" placeholder="必要な場合だけ"></textarea>
@@ -70,14 +68,11 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
   </div>
 </div>
 
-
 <div id="dataSection" class="section-box closed jump-anchor">
   <div class="section-head" data-toggle="dataSection"><span>📦 データ確認</span><span class="chev">⌄</span></div>
   <div class="section-body">
     <div class="compact-note">現在この管理ページに保存されている内容を確認できます。ギフト名で検索もできます。</div>
-    <div class="search" style="position:static;padding:10px 0 8px">
-      <input id="dataSearch" type="search" placeholder="🔍 データをギフト名で検索">
-    </div>
+    <div class="search" style="position:static;padding:10px 0 8px"><input id="dataSearch" type="search" placeholder="🔍 データをギフト名で検索"></div>
     <div id="dataList" class="list"></div>
   </div>
 </div>
@@ -108,26 +103,49 @@ details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summar
 
 <script src="gifts.js"></script>
 <script>
-const BASE=window.GIFT_DATA||[],KEY="syuriri_gift_admin_v2";
-let data=JSON.parse(localStorage.getItem(KEY)||"null")||JSON.parse(JSON.stringify(BASE)),editIndex=null;
+const RAW=window.GIFT_DATA||[];
+function normalizeItem(x){
+  const item={...x};
+  let opts=Array.isArray(item.responseOptions)?item.responseOptions:[];
+  opts=opts.map(v=>String(v||"").trim()).filter(Boolean);
+  if(!opts.length && item.response){
+    opts=[String(item.response).trim()].filter(Boolean);
+  }
+  item.responseOptions=opts;
+  item.response=opts.join("\n");
+  return item;
+}
+const BASE=RAW.map(normalizeItem),KEY="syuriri_gift_admin_v3";
+let data=JSON.parse(localStorage.getItem(KEY)||"null");
+if(data){data=data.map(normalizeItem)}else{data=JSON.parse(JSON.stringify(BASE))}
+let editIndex=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
 function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1200)}
+function getOptionsFromForm(){return Array.from(document.querySelectorAll(".responseOption")).map(t=>t.value.trim()).filter(Boolean)}
+function addOptionField(value=""){
+  const box=$("responseOptionsBox");
+  const wrap=document.createElement("div");
+  wrap.className="option-row";
+  wrap.innerHTML=`<div class="option-head"><span>返しパターン</span><button type="button" class="danger removeOptionBtn">削除</button></div><textarea class="responseOption" placeholder="1回でコピーしたい内容">${esc(value)}</textarea>`;
+  box.appendChild(wrap);
+  wrap.querySelector(".removeOptionBtn").onclick=()=>{wrap.remove();if(!document.querySelectorAll(".responseOption").length) addOptionField("")};
+}
+document.querySelectorAll("[data-toggle]").forEach(h=>{h.addEventListener("click",()=>{document.getElementById(h.dataset.toggle).classList.toggle("closed")})});
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active")});
 function renderKanpe(){
  const q=$("kanpeSearch").value.trim().toLowerCase();
  const found=data.filter(x=>!q||x.title.toLowerCase().includes(q));
- $("kanpeList").innerHTML=found.map(x=>`<div class="kanpe-card"><div class="kanpe-title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>${x.action?`<div class="small">🕺 動き・やること</div><div class="block note">${esc(x.action)}</div>`:""}${x.shuri?`<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>`:""}${x.response?`<div class="small">📣 みんな</div><div class="block people">${esc(x.response)}</div>`:""}${x.note?`<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>`:""}</div>`).join("")||`<div class="card">見つかりませんでした。</div>`;
+ $("kanpeList").innerHTML=found.map(x=>`<div class="kanpe-card"><div class="kanpe-title">${esc(x.title)} <span class="badge">${esc(x.category)}</span></div>${x.action?`<div class="small">🕺 動き・やること</div><div class="block note">${esc(x.action)}</div>`:""}${x.shuri?`<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>`:""}${x.responseOptions?.length?`<div class="small">📣 みんな</div>${x.responseOptions.map((r,i)=>`<div class="block people">${x.responseOptions.length>1?`<b>パターン${i+1}</b><br>`:""}${esc(r)}</div>`).join("")}`:""}${x.note?`<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>`:""}</div>`).join("")||`<div class="card">見つかりませんでした。</div>`;
 }
 function renderManage(){
  const q=$("manageSearch").value.trim().toLowerCase();
  const found=data.map((x,i)=>({...x,_i:i})).filter(x=>!q||x.title.toLowerCase().includes(q));
- $("manageList").innerHTML=found.map(x=>`<div class="item ${x.locked?'locked':''}"><div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div><div class="meta">${x.locked?'固定コンテンツ':'編集・削除できます'}</div>${x.locked?'':`<div class="actions"><button class="secondary editBtn" data-i="${x._i}">編集</button><button class="danger delBtn" data-i="${x._i}">削除</button></div>`}</div>`).join("");
+ $("manageList").innerHTML=found.map(x=>`<div class="item ${x.locked?'locked':''}"><div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div><div class="meta">${x.locked?'固定コンテンツ':'編集・削除できます'} / 返し ${x.responseOptions?.length||0}件</div>${x.locked?'':`<div class="actions"><button class="secondary editBtn" data-i="${x._i}">編集</button><button class="danger delBtn" data-i="${x._i}">削除</button></div>`}</div>`).join("");
  document.querySelectorAll(".editBtn").forEach(b=>b.onclick=()=>startEdit(+b.dataset.i));
  document.querySelectorAll(".delBtn").forEach(b=>b.onclick=()=>deleteItem(+b.dataset.i));
 }
-
 function renderData(){
   const q = $("dataSearch").value.trim().toLowerCase();
   const found = data.filter(x => !q || x.title.toLowerCase().includes(q));
@@ -135,48 +153,53 @@ function renderData(){
     <div class="item">
       <div class="title">${esc(x.title)} <span class="badge">${esc(x.category)}</span>${x.locked?'<span class="badge lock">固定</span>':''}</div>
       ${x.shuri ? `<div class="small">🐰 しゅり</div><div class="block shuri">${esc(x.shuri)}</div>` : ""}
-      ${x.response ? `<div class="small">📣 みんな</div><div class="block people">${esc(x.response)}</div>` : ""}
+      ${x.responseOptions?.length ? `<div class="small">📣 みんな</div>${x.responseOptions.map((r,i)=>`<div class="block people">${x.responseOptions.length>1?`<b>パターン${i+1}</b><br>`:""}${esc(r)}</div>`).join("")}` : ""}
       ${x.action ? `<div class="small">🕺 動き</div><div class="block note">${esc(x.action)}</div>` : ""}
       ${x.note ? `<div class="small">📝 メモ</div><div class="block note">${esc(x.note)}</div>` : ""}
     </div>`).join("") || `<div class="card">見つかりませんでした。</div>`;
 }
-
-function clearForm(){["title","shuri","response","action","note"].forEach(id=>$(id).value="");$("category").value="ギフト";editIndex=null;$("saveBtn").textContent="追加する";$("cancelBtn").style.display="none"}
-function startEdit(i){const x=data[i];if(x.locked)return;editIndex=i;$("title").value=x.title||"";$("category").value=x.category||"ギフト";$("shuri").value=x.shuri||"";$("response").value=x.response||"";$("action").value=x.action||"";$("note").value=x.note||"";$("saveBtn").textContent="変更を保存";$("cancelBtn").style.display="";window.scrollTo({top:0,behavior:"smooth"})}
+function clearForm(){
+  $("title").value="";$("category").value="ギフト";$("shuri").value="";$("action").value="";$("note").value="";
+  $("responseOptionsBox").innerHTML=""; addOptionField("");
+  editIndex=null;$("saveBtn").textContent="追加する";$("cancelBtn").style.display="none";
+}
+function startEdit(i){
+  const x=data[i];if(x.locked)return;editIndex=i;
+  $("title").value=x.title||"";$("category").value=x.category||"ギフト";$("shuri").value=x.shuri||"";$("action").value=x.action||"";$("note").value=x.note||"";
+  $("responseOptionsBox").innerHTML="";(x.responseOptions?.length?x.responseOptions:[""]).forEach(v=>addOptionField(v));
+  $("saveBtn").textContent="変更を保存";$("cancelBtn").style.display="";
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  document.querySelector('.tab[data-tab="manage"]').classList.add("active");$("manage").classList.add("active");
+  $("addSection").classList.remove("closed");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 function deleteItem(i){if(data[i].locked)return;if(confirm(`「${data[i].title}」を削除しますか？`)){data.splice(i,1);persist();renderManage();renderKanpe();renderData();toast("削除しました")}}
-$("saveBtn").onclick=()=>{const title=$("title").value.trim();if(!title){alert("ギフト名を入力してね");return}const obj={title,category:$("category").value,shuri:$("shuri").value.trim(),response:$("response").value.trim(),action:$("action").value.trim(),note:$("note").value.trim(),locked:false};if(editIndex===null)data.push(obj);else data[editIndex]=obj;persist();renderManage();renderKanpe();renderData();clearForm();toast(editIndex===null?"追加しました":"変更しました")};
+$("addOptionBtn").onclick=()=>addOptionField("");
+$("saveBtn").onclick=()=>{
+  const title=$("title").value.trim(); if(!title){alert("ギフト名を入力してね");return}
+  const responseOptions=getOptionsFromForm(); if(!responseOptions.length){alert("みんなの返しを1つ以上入れてね");return}
+  const obj={title,category:$("category").value,shuri:$("shuri").value.trim(),responseOptions,response:responseOptions.join("\n"),action:$("action").value.trim(),note:$("note").value.trim(),locked:false};
+  if(editIndex===null)data.push(obj); else data[editIndex]=obj;
+  persist(); renderManage(); renderKanpe(); renderData();
+  const addedNew = (editIndex===null);
+  clearForm(); toast(addedNew?"追加しました":"変更しました");
+};
 $("cancelBtn").onclick=clearForm;$("kanpeSearch").oninput=renderKanpe;$("manageSearch").oninput=renderManage;$("dataSearch").oninput=renderData;
 $("exportBtn").onclick=()=>{const text="window.GIFT_DATA = "+JSON.stringify(data,null,2)+";\n";const blob=new Blob([text],{type:"text/javascript;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gifts.js";document.body.appendChild(a);a.click();a.remove();toast("gifts.js を保存しました")};
-
-document.querySelectorAll("[data-toggle]").forEach(h=>{
-  h.addEventListener("click",()=>{
-    document.getElementById(h.dataset.toggle).classList.toggle("closed");
-  });
-});
 function openManageSection(id){
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
   document.querySelector('.tab[data-tab="manage"]').classList.add("active");
   $("manage").classList.add("active");
-  const sec=$(id);
-  sec.classList.remove("closed");
+  const sec=$(id); sec.classList.remove("closed");
   setTimeout(()=>sec.scrollIntoView({behavior:"smooth",block:"start"}),50);
   document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
 }
-$("navKanpe").onclick=()=>{
-  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
-  document.querySelector('.tab[data-tab="kanpe"]').classList.add("active");
-  $("kanpe").classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
-  $("navKanpe").classList.add("active");
-};
+$("navKanpe").onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));document.querySelector('.tab[data-tab="kanpe"]').classList.add("active");$("kanpe").classList.add("active");window.scrollTo({top:0,behavior:"smooth"});document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));$("navKanpe").classList.add("active")};
 $("navAdd").onclick=()=>{openManageSection("addSection");$("navAdd").classList.add("active")};
 $("navList").onclick=()=>{openManageSection("listSection");$("navList").classList.add("active")};
 $("navData").onclick=()=>{openManageSection("dataSection");renderData();$("navData").classList.add("active")};
 $("navPublish").onclick=()=>{openManageSection("publishSection");$("navPublish").classList.add("active")};
-
-renderKanpe();renderManage();renderData();
+clearForm(); renderKanpe(); renderManage(); renderData();
 </script>
 </body></html>

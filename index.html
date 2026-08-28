@@ -18,15 +18,38 @@ h1{font-size:34px;margin:12px 0 6px;line-height:1.1}.sub{color:var(--muted);line
 .grid{display:grid;grid-template-columns:1fr;gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
 .top{display:flex;justify-content:space-between;gap:10px}.title{font-size:19px;font-weight:900;line-height:1.35}.badge{font-size:11px;font-weight:900;background:var(--soft);padding:6px 9px;border-radius:999px;color:#af3f72}
 .label{font-size:12px;font-weight:900;color:var(--muted);margin-top:14px}.bubble{margin-top:7px;padding:12px 13px;border-radius:15px;line-height:1.65;white-space:pre-wrap;word-break:break-word;font-size:15px}.shuri{background:var(--lav)}.people{background:var(--soft)}
-.line-list{display:flex;flex-direction:column;gap:8px;margin-top:7px}.line-row{display:flex;align-items:center;gap:8px;background:var(--soft);border-radius:15px;padding:10px 10px 10px 12px}.line-text{flex:1;line-height:1.5;word-break:break-word}.copy{border:0;border-radius:11px;background:var(--ink);color:#fff;padding:9px 11px;font-size:12px;font-weight:800}
-.actions{margin-top:12px}.actions .copy{width:100%;padding:12px}.empty{text-align:center;color:var(--muted);padding:50px 10px}
+.line-list{display:flex;flex-direction:column;gap:8px;margin-top:7px}.line-row{display:flex;align-items:flex-start;gap:8px;background:var(--soft);border-radius:15px;padding:10px 10px 10px 12px;border:1px solid #ffd7e8}.line-text{flex:1;line-height:1.5;word-break:break-word;white-space:pre-wrap;font-size:15px}
+.copy{border:0;border-radius:11px;background:var(--ink);color:#fff;padding:9px 11px;font-size:12px;font-weight:800;white-space:nowrap}.like-btn{border:1px solid #ffcfe1;background:#fff;color:#a63868;border-radius:11px;padding:9px 10px;font-size:12px;font-weight:900;white-space:nowrap}.like-btn.on{background:#ffedf5;border-color:#ff91bb;color:#a3235e}.line-actions{display:flex;gap:6px;align-items:center;flex:0 0 auto}
+.actions{margin-top:12px}.actions .copy{width:100%;padding:12px}.hint{font-size:12px;color:var(--muted);margin-top:6px}
+.empty{text-align:center;color:var(--muted);padding:50px 10px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(15px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;opacity:0;transition:.2s;z-index:99}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(min-width:700px){.grid{grid-template-columns:1fr 1fr}.card.wide{grid-column:1/-1}}
+
+.rank-section{margin:4px 0 14px;background:linear-gradient(180deg,#fff,#fff6fb);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:var(--shadow)}
+.rank-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.rank-title{font-size:18px;font-weight:900}.rank-note{font-size:11px;color:var(--muted);text-align:right}
+.rank-list{display:grid;gap:8px;margin-top:10px}
+.rank-row{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.rank-num{font-weight:900;text-align:center}.rank-name{font-weight:800;min-width:0;word-break:break-word}.rank-count{font-size:12px;color:var(--muted);font-weight:800}
+.recommend-btn{margin-top:12px;width:100%;border:1px solid #ffcfe1;background:#fff6fa;color:#a63868;border-radius:13px;padding:11px 12px;font-weight:900;font-size:13px}
+.recommend-btn.on{background:#ffedf5;border-color:#ff91bb;color:#a3235e}
+.recommend-btn:disabled{opacity:.5}
+.rank-setup{font-size:12px;color:var(--muted);line-height:1.6;margin-top:8px}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <section class="hero"><div class="kicker">🐰 しゅりりりりりり。配信</div><h1>🎁 ギフト芸図鑑</h1><div class="sub">ギフト芸・弾幕・コールのお約束まとめ。<br>探して、必要な返しをワンタップでコピーできます。</div></section>
+<section id="rankSection" class="rank-section">
+  <div class="rank-head">
+    <div class="rank-title">🔥 人気の返しランキング</div>
+    <div class="rank-note">常連の♡が多い順</div>
+  </div>
+  <div id="rankList" class="rank-list">
+    <div class="rank-setup">ランキングを読み込み中…</div>
+  </div>
+</section>
 <div class="sticky">
 <input id="search" class="search" type="search" placeholder="ギフト名・セリフ・返しで検索">
 <div id="chips" class="chips"></div>
@@ -35,31 +58,130 @@ h1{font-size:34px;margin:12px 0 6px;line-height:1.1}.sub{color:var(--muted);line
 <div id="grid" class="grid"></div>
 </div>
 <div id="toast" class="toast">コピーしました ✓</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="recommend-config.js"></script>
 <script src="gifts.js"></script>
 <script>
-const DATA=window.GIFT_DATA||[];
+const RAW=window.GIFT_DATA||[];
+function normalizeItem(x){
+  const item={...x};
+  let opts=Array.isArray(item.responseOptions)?item.responseOptions:[];
+  opts=opts.map(v=>String(v||"").trim()).filter(Boolean);
+  if(!opts.length && item.response){
+    opts=[String(item.response).trim()].filter(Boolean);
+  }
+  item.responseOptions=opts;
+  item.response=opts.join("\n");
+  return item;
+}
+const DATA=RAW.map(normalizeItem);
 const categories=["すべて",...new Set(DATA.map(x=>x.category))];let current="すべて";
 const $=id=>document.getElementById(id),grid=$("grid"),search=$("search"),chips=$("chips"),count=$("count"),toast=$("toast");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function showToast(){toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1200)}
 async function copyText(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}showToast()}
 function renderChips(){chips.innerHTML=categories.map(c=>`<button class="chip ${c===current?'active':''}" data-c="${esc(c)}">${esc(c)}</button>`).join("");chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{current=b.dataset.c;renderChips();render()})}
-function splitResponse(s){return s.split(/\n+/).map(x=>x.trim()).filter(Boolean).filter(x=>!/^or$/i.test(x))}
 function render(){
  const q=search.value.trim().toLowerCase();
- const found=DATA.filter(x=>(current==="すべて"||x.category===current)&&(!q||[x.title,x.category,x.shuri,x.response].join(" ").toLowerCase().includes(q)));
+ const found=DATA.filter(x=>(current==="すべて"||x.category===current)&&(!q||[x.title,x.category,x.shuri,x.response,...x.responseOptions].join(" ").toLowerCase().includes(q)));
  count.textContent=`${found.length}件`;
  if(!found.length){grid.innerHTML=`<div class="empty">見つかりませんでした 🐰</div>`;return}
  grid.innerHTML=found.map(x=>{
-   const parts=splitResponse(x.response||"");
-   const multi=parts.length>1;
-   return `<article class="card ${String(x.response||"").length>90?'wide':''}">
+   const multi=x.responseOptions.length>1;
+   const joined=x.responseOptions.join("\n");
+   return `<article class="card ${joined.length>90?'wide':''}">
    <div class="top"><div class="title">${esc(x.title)}</div><div class="badge">${esc(x.category)}</div></div>
    ${x.shuri?`<div class="label">🐰 しゅり</div><div class="bubble shuri">${esc(x.shuri)}</div>`:""}
-   ${x.response?`<div class="label">📣 みんな</div>${multi?`<div class="line-list">${parts.map(p=>`<div class="line-row"><div class="line-text">${esc(p)}</div><button class="copy one" data-copy="${encodeURIComponent(p)}">コピー</button></div>`).join("")}</div>`:`<div class="bubble people">${esc(x.response)}</div>`}<div class="actions"><button class="copy all" data-copy="${encodeURIComponent(x.response)}">全部コピー</button></div>`:""}
+   ${x.responseOptions.length?`<div class="label">📣 みんな</div>${multi?`<div class="hint">別の言い方ごとにコピーできます</div>`:""}<div class="line-list">${x.responseOptions.map((p,idx)=>`<div class="line-row"><div class="line-text">${multi?`<b>パターン${idx+1}</b><br>`:""}${esc(p)}</div><div class="line-actions"><button class="copy one" data-copy="${encodeURIComponent(p)}">コピー</button><button class="like-btn" data-like="${encodeURIComponent(x.title+"::"+p)}">♡ 0</button></div></div>`).join("")}</div><div class="actions">${multi?`<button class="copy all" data-copy="${encodeURIComponent(joined)}">全部コピー</button>`:""}</div>`:""}
    </article>`}).join("");
  grid.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copyText(decodeURIComponent(b.dataset.copy)));
+ bindLikeButtons();
 }
-search.oninput=render;renderChips();render();
+
+let voteClient=null, currentUser=null, myVotes=new Set(), voteCounts=new Map(), rankingReady=false;
+async function initRecommendations(){
+  const cfg=window.RECOMMEND_CONFIG||{};
+  if(!cfg.supabaseUrl || !cfg.supabaseAnonKey || cfg.supabaseUrl.includes("YOUR_")){
+    $("rankList").innerHTML=`<div class="rank-setup">いいねランキングは準備中です 🐰</div>`;
+    document.querySelectorAll(".like-btn").forEach(b=>b.style.display="none");
+    return;
+  }
+  try{
+    voteClient=supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey);
+    let {data:{session}}=await voteClient.auth.getSession();
+    if(!session){
+      const {data,error}=await voteClient.auth.signInAnonymously();
+      if(error) throw error;
+      session=data.session;
+    }
+    currentUser=session.user;
+    rankingReady=true;
+    await loadVotes();
+  }catch(e){
+    console.error(e);
+    $("rankList").innerHTML=`<div class="rank-setup">ランキングの読み込みに失敗しました。少ししてから再読み込みしてね。</div>`;
+  }
+}
+async function loadVotes(){
+  if(!voteClient) return;
+  const {data,error}=await voteClient.from("gift_votes").select("gift_id,user_id");
+  if(error) throw error;
+  voteCounts=new Map(); myVotes=new Set();
+  (data||[]).forEach(v=>{
+    voteCounts.set(v.gift_id,(voteCounts.get(v.gift_id)||0)+1);
+    if(v.user_id===currentUser.id) myVotes.add(v.gift_id);
+  });
+  renderRanking();
+  updateLikeButtons();
+}
+function decodeVoteId(id){
+  const pos=id.indexOf("::");
+  if(pos<0) return {gift:id,phrase:""};
+  return {gift:id.slice(0,pos),phrase:id.slice(pos+2)};
+}
+function renderRanking(){
+  const rows=[...voteCounts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja")).slice(0,5);
+  if(!rows.length){
+    $("rankList").innerHTML=`<div class="rank-setup">まだいいねがありません。好きな返しに最初の♡をどうぞ ✨</div>`;
+    return;
+  }
+  const medals=["🥇","🥈","🥉","4","5"];
+  $("rankList").innerHTML=rows.map(([id,count],i)=>{
+    const v=decodeVoteId(id);
+    return `<div class="rank-row"><div class="rank-num">${medals[i]}</div><div class="rank-name"><b>${esc(v.gift)}</b>${v.phrase?`<br><span style="font-size:12px;font-weight:600;color:var(--muted)">${esc(v.phrase)}</span>`:""}</div><div class="rank-count">♥ ${count}</div></div>`;
+  }).join("");
+}
+function updateLikeButtons(){
+  document.querySelectorAll("[data-like]").forEach(b=>{
+    const id=decodeURIComponent(b.dataset.like);
+    const count=voteCounts.get(id)||0;
+    const on=myVotes.has(id);
+    b.classList.toggle("on",on);
+    b.textContent=`${on?"♥":"♡"} ${count}`;
+    b.disabled=!rankingReady;
+  });
+}
+function bindLikeButtons(){
+  document.querySelectorAll("[data-like]").forEach(b=>{
+    const id=decodeURIComponent(b.dataset.like);
+    b.onclick=async()=>{
+      if(!rankingReady||!voteClient||!currentUser)return;
+      b.disabled=true;
+      try{
+        if(myVotes.has(id)){
+          const {error}=await voteClient.from("gift_votes").delete().eq("gift_id",id).eq("user_id",currentUser.id);
+          if(error) throw error;
+        }else{
+          const {error}=await voteClient.from("gift_votes").insert({gift_id:id,user_id:currentUser.id});
+          if(error) throw error;
+        }
+        await loadVotes();
+      }catch(e){console.error(e);alert("いいねの更新に失敗しました")}
+      finally{b.disabled=false}
+    };
+  });
+  updateLikeButtons();
+}
+search.oninput=render;renderChips();render();initRecommendations();
 </script>
 </body></html>
