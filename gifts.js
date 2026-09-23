@@ -445,96 +445,27 @@ window.GIFT_DATA = [
     "interactionDescription": ""
   },
   {
-    "title": "うれしくなっちゃうなー‼️（楽しいバージョンもあり）",
-    "category": "定番",
-    "interactionDescription": "うれしくなっちゃうなーって歌ったら『あ』って言ってね！",
-    "shuri": "",
-    "responseOptions": [
-      "あ"
-    ],
-    "response": "あ",
-    "action": "",
-    "note": "",
-    "locked": false
-  },
-  {
-    "title": "24時を迎えた時",
-    "category": "時間",
-    "interactionDescription": "きっと、私は24時になったの気づかないのでみんなで教えてください。",
-    "shuri": "",
-    "responseOptions": [
-      "おめでとサンバ💃みんなでダンスうー！はー！",
-      "24時！",
-      "👏👏",
-      "バトンタッチ‼️"
-    ],
-    "response": "おめでとサンバ💃みんなでダンスうー！はー！\n24時！\n👏👏\nバトンタッチ‼️",
-    "action": "",
-    "note": "",
-    "locked": false
-  },
-  {
-    "title": "自己紹介",
-    "category": "定番",
-    "interactionDescription": "しゅりり‼️ぐるぐる‼️回復‼️しゅりりりりりり‼️🐰",
-    "shuri": "",
-    "responseOptions": [
-      "うさぎっ🐇ぐるぐる🌀回復✨しゅりりりりりり！🌸",
-      "🐰➕🌀➕🪫→🔋＝しゅりりりりりり"
-    ],
-    "response": "うさぎっ🐇ぐるぐる🌀回復✨しゅりりりりりり！🌸\n🐰➕🌀➕🪫→🔋＝しゅりりりりりり",
-    "action": "",
-    "note": "",
-    "locked": false
-  },
-  {
-    "title": "タワー",
+    "title": "ミニクラウン",
     "category": "ギフト",
-    "interactionDescription": "タワーを貰って、私のコールが終わったらみんなで言うよ‼️‼️",
+    "interactionDescription": "ミニクラウンいただきっ👑✨ 頭にちょこん！気分はどーん‼️ ぱっぱらぱっぱっぱー‼️王様レベルが1上がりました‼️",
     "shuri": "",
     "responseOptions": [
-      "ありがタワー🗼"
+      "(ﾉⲺⲻ Ⲻ)ﾉﾉ_ _)╮(ﾉⲺⲻ Ⲻ)ﾉﾉ_ _)╮"
     ],
-    "response": "ありがタワー🗼",
+    "response": "(ﾉⲺⲻ Ⲻ)ﾉﾉ_ _)╮(ﾉⲺⲻ Ⲻ)ﾉﾉ_ _)╮",
     "action": "",
     "note": "",
     "locked": false
   },
   {
-    "title": "坦々麺",
+    "title": "エンジェルウィング",
     "category": "ギフト",
-    "interactionDescription": "坦々麺のお歌が流れたら終わりに言うよ！‼️",
+    "interactionDescription": "エンジェルウィ〜ング‼️🪽✨ 右よし！左よし！羽よし！……顔よし‼️😎",
     "shuri": "",
     "responseOptions": [
-      "🍜いぇーーーい🍜‼️"
+      "( ｣ﾟДﾟ)｣ｶﾜｲｲﾖｰ!!!!!!!!!!"
     ],
-    "response": "🍜いぇーーーい🍜‼️",
-    "action": "",
-    "note": "",
-    "locked": false
-  },
-  {
-    "title": "だれかが誕生日のとき🎉",
-    "category": "定番",
-    "interactionDescription": "はっぴばーすでーとぅー『ゆー』と一緒に言ってね‼️",
-    "shuri": "",
-    "responseOptions": [
-      "ゆー"
-    ],
-    "response": "ゆー",
-    "action": "",
-    "note": "",
-    "locked": false
-  },
-  {
-    "title": "ファンサ",
-    "category": "曲",
-    "interactionDescription": "ファンサしちゃう『ぞ』のとき",
-    "shuri": "",
-    "responseOptions": [
-      "🐘"
-    ],
-    "response": "🐘",
+    "response": "( ｣ﾟДﾟ)｣ｶﾜｲｲﾖｰ!!!!!!!!!!",
     "action": "",
     "note": "",
     "locked": false
